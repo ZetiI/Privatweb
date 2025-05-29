@@ -6,7 +6,7 @@ const Grade11 = () => {
   return (
     <div>
       <section className="bg-white p-8 rounded-lg shadow-lg mb-8">
-        <h1 className="text-4xl font-bold mb-6 text-primary">11. osztályos Informatika</h1>
+        <h1 className="text-4xl font-bold mb-6 text-primary">React Alapok</h1>
         <div className="prose max-w-none">
           <p className="text-lg text-gray-700 mb-4">
             Üdvözöljük a 11. osztályos informatika tananyagban! Ez a kurzus a React 

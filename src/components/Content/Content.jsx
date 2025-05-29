@@ -4,37 +4,44 @@ import Grade10 from '../GradeContent/Grade10';
 import Grade11 from '../GradeContent/Grade11';
 import Grade12 from '../GradeContent/Grade12';
 import Grade13 from '../GradeContent/Grade13';
-import AgazatiVizsga from '../GradeContent/AgazatiVizsga';
 import SzakmaiVizsga from '../GradeContent/SzakmaiVizsga';
 
+
+
+/*
+
+    'HTML - CSS', //9. osztály programozás
+    'JavaScript', // 10. osztály programozás
+    'React', // 11. osztály programozás
+    'API', // 12. osztály programozás
+    'Frontend', // 13. osztály programozás
+    'Frontend - Backend' // Szakmai vizsga tananyag
+*/ 
 const Content = ({ selectedItem }) => {
   const contentMap = {
-    '9. osztály programozás': {
-      title: '9. osztály programozás',
-      content: <Grade9 />
+    'HTML - CSS': {
+      title: 'HTML - CSS',
+      content: <Grade9/>
     },
-    '10. osztály programozás': {
-      title: '10. osztály programozás',
+    'JavaScript': {
+      title: 'JavaScript',
       content: <Grade10 />
     },
-    '11. osztály programozás': {
-      title: '11. osztály programozás',
+    'React': {
+      title: 'React',
       content: <Grade11 />
     },
-    '12. osztály programozás': {
-      title: '12. osztály programozás',
+    'API': {
+      title: 'API',
       content: <Grade12 />
     },
-    '13. osztály programozás': {
-      title: '13. osztály programozás',
+    'Frontend': {
+      title: 'Frontend',
       content: <Grade13 />
     },
-    'Ágazati vizsga felkészítő tananyag': {
-      title: 'Ágazati vizsga felkészítő tananyag',
-      content: <AgazatiVizsga />
-    },
-    'Szakmai vizsga tananyag': {
-      title: 'Szakmai vizsga tananyag',
+    
+    'Frontend - Backend': {
+      title: 'Frontend - Backend',
       content: <SzakmaiVizsga />
     }
   };
@@ -55,11 +62,9 @@ const Content = ({ selectedItem }) => {
         <div className="flex flex-col items-center justify-center min-h-[calc(100vh-8rem)] text-center animate-fadeIn">
           <div className="max-w-2xl">
             <h2 className="text-4xl font-bold bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent mb-6">
-              Üdvözöljük az Infojegyzettár oldalon!
+              Kérlek válassz a fenti lehetőségek közül!
             </h2>
-            <p className="text-xl text-text-secondary">
-              Válasszon a bal oldali menüből a kívánt tananyagot.
-            </p>
+          
             <div className="mt-8 flex justify-center">
               <div className="animate-pulse text-secondary">
                 <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">

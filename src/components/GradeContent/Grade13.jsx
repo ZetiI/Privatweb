@@ -6,7 +6,7 @@ const Grade13 = () => {
   return (
     <div>
       <section className="bg-white p-8 rounded-lg shadow-lg mb-8">
-        <h1 className="text-4xl font-bold mb-6 text-primary">13.osztály vegyes</h1>
+        <h1 className="text-4xl font-bold mb-6 text-primary">Frontend Alapok</h1>
         <div className="prose max-w-none">
           <p className="text-lg text-gray-700 mb-4">
             Üdvözöljük az Infotárhely oldalon! Ez a platform a modern szoftverfejlesztés 
