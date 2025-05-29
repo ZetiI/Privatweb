@@ -40,24 +40,34 @@ const Content = ({ selectedItem }) => {
   };
 
   return (
-    <div className="flex-1 p-10 bg-gray-50">
+    <div className="min-h-[calc(100vh-4rem)]">
       {selectedItem ? (
-        <div className="bg-white rounded-lg shadow-md p-8 animate-fadeIn">
-          <h2 className="text-3xl font-bold text-primary mb-6 pb-4 border-b-2 border-secondary">
-            {contentMap[selectedItem].title}
-          </h2>
-          <div className="text-accent text-lg leading-relaxed">
-            {contentMap[selectedItem].content}
+        <div className="animate-fadeIn">
+          <div className="prose prose-lg max-w-none">
+            <div className="bg-white rounded-xl shadow-soft p-8">
+              <div className="text-text-primary">
+                {contentMap[selectedItem].content}
+              </div>
+            </div>
           </div>
         </div>
       ) : (
-        <div className="text-center py-16">
-          <h2 className="text-4xl font-bold text-primary mb-6">
-            Üdvözöljük az Infojegyzettár oldalon!
-          </h2>
-          <p className="text-xl text-gray-600">
-            Válasszon a bal oldali menüből a kívánt tananyagot.
-          </p>
+        <div className="flex flex-col items-center justify-center min-h-[calc(100vh-8rem)] text-center animate-fadeIn">
+          <div className="max-w-2xl">
+            <h2 className="text-4xl font-bold bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent mb-6">
+              Üdvözöljük az Infojegyzettár oldalon!
+            </h2>
+            <p className="text-xl text-text-secondary">
+              Válasszon a bal oldali menüből a kívánt tananyagot.
+            </p>
+            <div className="mt-8 flex justify-center">
+              <div className="animate-pulse text-secondary">
+                <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>

@@ -16,13 +16,24 @@ function App() {
   ];
 
   return (
-    <div className="flex min-h-screen">
+    <div className="min-h-screen bg-surface">
       <Sidebar 
         menuItems={menuItems}
         selectedItem={selectedItem}
         onSelectItem={setSelectedItem}
       />
-      <Content selectedItem={selectedItem} />
+      <main className="relative">
+        <div className="sticky top-0 z-10 bg-surface/80 backdrop-blur-sm border-b border-gray-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <h1 className="text-2xl font-bold text-text-primary">
+              {selectedItem || 'Válassz egy témát'}
+            </h1>
+          </div>
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <Content selectedItem={selectedItem} />
+        </div>
+      </main>
     </div>
   );
 }
