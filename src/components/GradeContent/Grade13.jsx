@@ -1,104 +1,170 @@
 import React, { useState } from 'react';
+import { FaCode, FaDatabase, FaServer, FaCheckCircle, FaLightbulb, FaQuestionCircle, FaPlay, FaDesktop } from 'react-icons/fa';
 
 const Grade13 = () => {
   const [activeTab, setActiveTab] = useState('tananyag');
+  const [expandedSections, setExpandedSections] = useState({
+    reactKomponensek: true,
+    reactHooks: false,
+    contextApi: false,
+    asztaliAlkalmazasok: false,
+    teljesitmeny: false,
+    teszteles: false
+  });
+
+  const toggleSection = (section) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
+  };
 
   return (
+    <div className="max-w-6xl mx-auto px-4 py-8">
+      <section className="bg-gradient-to-r from-blue-50 to-green-50 p-8 rounded-xl shadow-lg mb-8 border border-gray-200">
+        <div className="flex items-center mb-6">
+          <div className="bg-blue-100 p-3 rounded-full mr-4">
+            <FaDesktop className="text-blue-600 text-2xl" />
+          </div>
     <div>
-      <section className="bg-white p-8 rounded-lg shadow-lg mb-8">
-        <h1 className="text-4xl font-bold mb-6 text-primary">Frontend Alapok</h1>
-        <div className="prose max-w-none">
-          <p className="text-lg text-gray-700 mb-4">
-            Üdvözöljük az Infotárhely oldalon! Ez a platform a modern szoftverfejlesztés 
-            alapjait és haladó témáit mutatja be, gyakorlati példákon keresztül. Itt megtalálhatod 
-            a web fejlesztés, backend fejlesztés és asztali alkalmazások fejlesztésének legfontosabb 
-            eszközeit és technológiáit.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-6">
-            <div className="bg-base-200 p-4 rounded-lg">
-              <h3 className="text-xl font-semibold mb-2">Tananyag</h3>
+            <h1 className="text-4xl font-bold text-gray-800">Frontend és Asztali Alkalmazások</h1>
+            <p className="text-green-600 font-medium">13. osztályos informatika</p>
+          </div>
+        </div>
+        
+        <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+          Üdvözöljük a Frontend és Asztali Alkalmazások fejlesztése kurzuson! Ebben a tananyagban 
+          a modern webalkalmazások és asztali alkalmazások fejlesztésének technikáit sajátíthatod el, 
+          különös tekintettel a React és Electron technológiákra.
+        </p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+          <div className="bg-white p-6 rounded-lg shadow-md border-t-4 border-blue-500 hover:shadow-lg transition-shadow">
+            <div className="flex items-center mb-3">
+              <FaCode className="text-blue-500 mr-2" />
+              <h3 className="text-xl font-semibold">Frontend Fejlesztés</h3>
+            </div>
               <p className="text-gray-600">
-                Részletes elméleti anyagok, kód példák és magyarázatok a modern web fejlesztésről.
+              React komponensek, hooks, állapotkezelés és modern frontend technológiák.
               </p>
             </div>
-            <div className="bg-base-200 p-4 rounded-lg">
-              <h3 className="text-xl font-semibold mb-2">Feladatok</h3>
+          
+          <div className="bg-white p-6 rounded-lg shadow-md border-t-4 border-green-500 hover:shadow-lg transition-shadow">
+            <div className="flex items-center mb-3">
+              <FaDesktop className="text-green-500 mr-2" />
+              <h3 className="text-xl font-semibold">Asztali Alkalmazások</h3>
+            </div>
               <p className="text-gray-600">
-                Gyakorlati feladatok a tanultak begyakorlásához, különböző nehézségi szinten.
+              Electron alapú asztali alkalmazások fejlesztése React-tel.
               </p>
             </div>
-            <div className="bg-base-200 p-4 rounded-lg">
-              <h3 className="text-xl font-semibold mb-2">Megoldások</h3>
-              <p className="text-gray-600">
-                Részletes megoldások és magyarázatok a feladatokhoz, legjobb gyakorlatokkal.
-              </p>
+          
+          <div className="bg-white p-6 rounded-lg shadow-md border-t-4 border-purple-500 hover:shadow-lg transition-shadow">
+            <div className="flex items-center mb-3">
+              <FaCheckCircle className="text-purple-500 mr-2" />
+              <h3 className="text-xl font-semibold">Tesztelés és Optimalizálás</h3>
             </div>
-            <div className="bg-base-200 p-4 rounded-lg">
-              <h3 className="text-xl font-semibold mb-2">Asztali alkalmazások</h3>
               <p className="text-gray-600">
-                Asztali alkalmazások fejlesztése Electron és React segítségével.
+              Komponens tesztelés, teljesítmény optimalizálás és best practices.
               </p>
-            </div>
           </div>
         </div>
       </section>
 
-      <div className="flex space-x-4 mb-6 border-b border-gray-200">
+      <div className="flex flex-wrap gap-2 mb-8 border-b border-gray-200 pb-2">
         <button
           onClick={() => setActiveTab('tananyag')}
-          className={`pb-2 px-4 ${
+          className={`px-6 py-2 rounded-lg font-medium transition-all ${
             activeTab === 'tananyag'
-              ? 'border-b-2 border-secondary text-secondary font-semibold'
-              : 'text-gray-600 hover:text-primary'
+              ? 'bg-blue-600 text-white shadow-md'
+              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
           }`}
         >
           Tananyag
         </button>
         <button
           onClick={() => setActiveTab('feladatok')}
-          className={`pb-2 px-4 ${
+          className={`px-6 py-2 rounded-lg font-medium transition-all ${
             activeTab === 'feladatok'
-              ? 'border-b-2 border-secondary text-secondary font-semibold'
-              : 'text-gray-600 hover:text-primary'
+              ? 'bg-blue-600 text-white shadow-md'
+              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
           }`}
         >
           Feladatok
         </button>
         <button
           onClick={() => setActiveTab('megoldasok')}
-          className={`pb-2 px-4 ${
+          className={`px-6 py-2 rounded-lg font-medium transition-all ${
             activeTab === 'megoldasok'
-              ? 'border-b-2 border-secondary text-secondary font-semibold'
-              : 'text-gray-600 hover:text-primary'
+              ? 'bg-blue-600 text-white shadow-md'
+              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
           }`}
         >
           Megoldások
         </button>
         <button
-          onClick={() => setActiveTab('asztali')}
-          className={`pb-2 px-4 ${
-            activeTab === 'asztali'
-              ? 'border-b-2 border-secondary text-secondary font-semibold'
-              : 'text-gray-600 hover:text-primary'
+          onClick={() => setActiveTab('gyakorlas')}
+          className={`px-6 py-2 rounded-lg font-medium transition-all ${
+            activeTab === 'gyakorlas'
+              ? 'bg-blue-600 text-white shadow-md'
+              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
           }`}
         >
-          Asztali alkalmazások
+          Gyakorlás
+        </button>
+        <button
+          onClick={() => setActiveTab('asztali')}
+          className={`px-6 py-2 rounded-lg font-medium transition-all ${
+            activeTab === 'asztali'
+              ? 'bg-blue-600 text-white shadow-md'
+              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+          }`}
+        >
+          Asztali Alkalmazások
         </button>
       </div>
 
       {activeTab === 'tananyag' && (
         <div className="space-y-8">
-          <section>
-            <h3 className="text-2xl font-bold mb-4">React Komponensek és Hooks</h3>
+          <section className="bg-white rounded-xl shadow-md overflow-hidden">
+            <div 
+              className="flex justify-between items-center p-6 cursor-pointer bg-blue-50"
+              onClick={() => toggleSection('reactKomponensek')}
+            >
+              <h3 className="text-2xl font-bold text-gray-800">React Komponensek</h3>
+              <span className="text-gray-500">
+                {expandedSections.reactKomponensek ? '▲' : '▼'}
+              </span>
+            </div>
             
-            <div className="space-y-6">
-              <div className="bg-white p-6 rounded-lg shadow">
-                <h4 className="text-xl font-semibold mb-4">1. Card Komponens</h4>
+            {expandedSections.reactKomponensek && (
+              <div className="p-6 space-y-6">
+                <div className="prose max-w-none">
+                  <p className="text-gray-700 mb-4 leading-relaxed">
+                    A React komponensek a modern webalkalmazások építőkövei. Nézzük meg a legfontosabb 
+                    komponens típusokat és azok használatát gyakorlati példákon keresztül.
+                  </p>
+
+                  <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+                    <div className="flex items-start">
+                      <FaLightbulb className="text-yellow-500 mr-2 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-gray-800">Komponens Tervezési Tipp</h4>
+                        <p className="text-gray-700">
+                          Törekedj az újrafelhasználható, egységes felelősségű komponensek írására. 
+                          Használj prop-okat a komponensek konfigurálásához és kerüld a belső állapot 
+                          túlzott használatát.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">1. Card Komponens</h4>
                 <p className="text-gray-700 mb-4">
                   A Card komponens egy újrafelhasználható kártya komponens, amely egy ital adatait jeleníti meg.
                   A komponens props-okon keresztül kapja meg az adatokat, és Tailwind CSS osztályokat használ a stílusozáshoz.
                 </p>
-                <pre className="bg-gray-100 p-4 rounded mb-4">
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
                   {`const Card = ({drink}) => {
     return (
         <div className="card bg-base-100 w-64 h-72 shadow-xl">
@@ -116,19 +182,13 @@ const Grade13 = () => {
 
 export default Card`}
                 </pre>
-                <p className="text-gray-700">
-                  A komponens egy kártyát jelenít meg, amely tartalmaz egy képet és egy címet. 
-                  A Tailwind CSS osztályok segítségével a kártya mérete, árnyéka és háttérszíne van beállítva.
-                </p>
-              </div>
 
-              <div className="bg-white p-6 rounded-lg shadow">
-                <h4 className="text-xl font-semibold mb-4">2. CardList Komponens</h4>
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">2. CardList Komponens</h4>
                 <p className="text-gray-700 mb-4">
                   A CardList komponens egy lista komponens, amely több Card komponenst jelenít meg.
                   A komponens egy listát kap props-okon keresztül, és minden elemhez létrehoz egy Card komponenst.
                 </p>
-                <pre className="bg-gray-100 p-4 rounded mb-4">
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
                   {`import Card from './Card'
 
 const CardList = ({list}) => {
@@ -147,183 +207,310 @@ const CardList = ({list}) => {
 
 export default CardList`}
                 </pre>
-                <p className="text-gray-700">
-                  A komponens flexbox-ot használ a kártyák elrendezéséhez, és egy feltételes renderelést alkalmaz:
-                  ha a lista üres, akkor egy üzenetet jelenít meg, egyébként pedig a kártyákat.
-                  Fontos a key prop használata a map függvényben a React listák renderelésénél.
-                </p>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <h5 className="font-semibold text-blue-600 mb-2">Komponens Típusok</h5>
+                      <ul className="text-sm space-y-1">
+                        <li>Funkcionális komponensek</li>
+                        <li>Osztály komponensek</li>
+                        <li>HOC (Higher-Order Components)</li>
+                        <li>Render props komponensek</li>
+                      </ul>
               </div>
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <h5 className="font-semibold text-blue-600 mb-2">Props Kezelés</h5>
+                      <ul className="text-sm space-y-1">
+                        <li>Props validáció</li>
+                        <li>Alapértelmezett props</li>
+                        <li>Children prop</li>
+                        <li>Props drilling elkerülése</li>
+                      </ul>
+                    </div>
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <h5 className="font-semibold text-blue-600 mb-2">Komponens Életciklus</h5>
+                      <ul className="text-sm space-y-1">
+                        <li>Mounting</li>
+                        <li>Updating</li>
+                        <li>Unmounting</li>
+                        <li>Error handling</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </section>
 
-              <div className="bg-white p-6 rounded-lg shadow">
-                <h4 className="text-xl font-semibold mb-4">3. Category Komponens</h4>
-                <p className="text-gray-700 mb-4">
-                  A Category komponens egy szűrési komponens, amely lehetővé teszi az italok szűrését kategória szerint.
-                  A komponens Context API-t használ a kategóriák lekérdezéséhez, és useState/useEffect hook-okat az állapot kezeléséhez.
-                </p>
-                <pre className="bg-gray-100 p-4 rounded mb-4">
-                  {`import { useState, useEffect, useContext } from "react"
-import CardList from "./CardList"
-import CocktailContext from "../context/CocktailContext";
+          <section className="bg-white rounded-xl shadow-md overflow-hidden">
+            <div 
+              className="flex justify-between items-center p-6 cursor-pointer bg-blue-50"
+              onClick={() => toggleSection('reactHooks')}
+            >
+              <h3 className="text-2xl font-bold text-gray-800">React Hooks és Állapotkezelés</h3>
+              <span className="text-gray-500">
+                {expandedSections.reactHooks ? '▲' : '▼'}
+              </span>
+            </div>
+            
+            {expandedSections.reactHooks && (
+              <div className="p-6 space-y-6">
+                <div className="prose max-w-none">
+                  <p className="text-gray-700 mb-4 leading-relaxed">
+                    A React Hooks bevezetése forradalmasította a React fejlesztést, lehetővé téve 
+                    az állapot és életciklus funkciók használatát funkcionális komponensekben.
+                  </p>
 
-const Category = () => {
-    const {categories} = useContext(CocktailContext)
-    const [selectedCategory, setSelectedCategory] = useState("Cocktail");
-    const [filteredCocktails, setFilteredCocktails] = useState([]);
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">Alapvető Hooks</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto whitespace-pre-wrap break-words max-w-full overflow-x-auto">
+                    {`// useState hook példa
+const [count, setCount] = useState(0);
+const [user, setUser] = useState({ name: '', email: '' });
 
-    const filterDrinks = async () => {
-        try {
-            const response = await fetch(
-                \`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=\${selectedCategory}\`
-            );
-            const {drinks} = await response.json();
-            setFilteredCocktails(drinks || []);
-        } catch (error) {
-            console.error('Hiba a lekérdezés során:', error);
-            setFilteredCocktails([]);
-        }
-    }
+// useEffect hook példa
+useEffect(() => {
+    document.title = \`Count: \${count}\`;
+}, [count]);  // Csak count változásakor fut le
 
-    useEffect(() => {
-        filterDrinks();
-    }, [selectedCategory])
+// useRef hook példa
+const inputRef = useRef(null);
+const focusInput = () => {
+    inputRef.current.focus();
+};
 
-    return (
+// useCallback hook példa
+const memoizedCallback = useCallback(
+    () => {
+        doSomething(count);
+    },
+    [count],
+);
+
+// useMemo hook példa
+const memoizedValue = useMemo(
+    () => computeExpensiveValue(count),
+    [count],
+);`}
+                  </pre>
+
+                  <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
+                    <div className="flex items-start">
+                      <FaLightbulb className="text-blue-500 mr-2 mt-1 flex-shrink-0" />
         <div>
-            <div className="flex flex-col gap-5 items-center justify-center">
-                <div className="text-2xl font-bold">Szűrés kategória szerint</div>
-                <select 
-                    onChange={(e) => setSelectedCategory(e.target.value)} 
-                    className="select select-bordered w-full max-w-xs"
-                >
-                    {categories.map(category => (
-                        <option key={category.strCategory} value={category.strCategory}>
-                            {category.strCategory}
-                        </option>
-                    ))}
-                </select>
-                <CardList list={filteredCocktails}/>
+                        <h4 className="font-semibold text-gray-800">Hook Szabályok</h4>
+                        <p className="text-gray-700">
+                          1. Csak React függvény komponensek tetején használj hook-okat
+                          2. Ne használj hook-okat feltételes szerkezetekben
+                          3. Mindig add meg a függőségi tömböt useEffect-nél
+                        </p>
             </div>
         </div>
-    )
+                  </div>
+
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">Saját Hook Készítése</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto whitespace-pre-wrap break-words max-w-full overflow-x-auto">
+                    {`// Egyedi hook a localStorage kezelésére
+function useLocalStorage(key, initialValue) {
+    // Állapot inicializálása
+    const [storedValue, setStoredValue] = useState(() => {
+        try {
+            const item = window.localStorage.getItem(key);
+            return item ? JSON.parse(item) : initialValue;
+        } catch (error) {
+            console.error(error);
+            return initialValue;
+        }
+    });
+
+    // Érték beállítása és mentése
+    const setValue = value => {
+        try {
+            const valueToStore = value instanceof Function ? value(storedValue) : value;
+            setStoredValue(valueToStore);
+            window.localStorage.setItem(key, JSON.stringify(valueToStore));
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    return [storedValue, setValue];
 }
 
-export default Category`}
-                </pre>
-                <p className="text-gray-700">
-                  A komponens bemutatja a Context API, useState és useEffect hook-ok használatát.
-                  A useEffect hook figyeli a selectedCategory változását, és újra lekérdezi az adatokat amikor változik.
-                  A komponens tartalmaz hibakezelést és null-check-et a válasz feldolgozásánál.
-                </p>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow">
-                <h4 className="text-xl font-semibold mb-4">4. Cocktail Komponens</h4>
-                <p className="text-gray-700 mb-4">
-                  A Cocktail komponens egy részletes nézetet biztosít egy italról.
-                  A komponens megjeleníti az ital képét, nevét, leírását és további információit.
-                </p>
-                <pre className="bg-gray-100 p-4 rounded mb-4">
-                  {`const Cocktail = ({cocktail}) => {
+// Használat
+function App() {
+    const [name, setName] = useLocalStorage('name', 'Bob');
     return (
-        <div className="hero bg-base-200 w-screen">
-            <div className="hero-content flex-col lg:flex-row">
-                <img
-                    src={cocktail.strDrinkThumb}
-                    alt={cocktail.strDrink}
-                    className="min-h-96 rounded-lg shadow-2xl" />
-                <div>
-                    <h1 className="text-5xl font-bold">{cocktail.strDrink}</h1>
-                    <p className="py-6">
-                        {cocktail.strInstructions}
-                    </p>
-                    <div className="badge badge-secondary h-14 font-bold text-xl p-7">
-                        {cocktail.strCategory}
+        <input
+            type="text"
+            value={name}
+            onChange={e => setName(e.target.value)}
+        />
+    );
+}`}
+                  </pre>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <h5 className="font-semibold text-blue-600 mb-2">Állapot Hooks</h5>
+                      <ul className="text-sm space-y-1">
+                        <li>useState</li>
+                        <li>useReducer</li>
+                        <li>useContext</li>
+                        <li>useRef</li>
+                      </ul>
                     </div>
-                    <div className="badge badge-neutral h-14 font-bold text-xl p-7">
-                        {cocktail.strAlcoholic}
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <h5 className="font-semibold text-blue-600 mb-2">Effekt Hooks</h5>
+                      <ul className="text-sm space-y-1">
+                        <li>useEffect</li>
+                        <li>useLayoutEffect</li>
+                        <li>useImperativeHandle</li>
+                        <li>useDebugValue</li>
+                      </ul>
                     </div>
-                    <div className="badge badge-accent h-14 font-bold text-xl p-7">
-                        {cocktail.strGlass}
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <h5 className="font-semibold text-blue-600 mb-2">Teljesítmény Hooks</h5>
+                      <ul className="text-sm space-y-1">
+                        <li>useMemo</li>
+                        <li>useCallback</li>
+                        <li>useTransition</li>
+                        <li>useDeferredValue</li>
+                      </ul>
                     </div>
                 </div>
             </div>
         </div>
-    )
-}
+            )}
+          </section>
 
-export default Cocktail`}
-                </pre>
-                <p className="text-gray-700">
-                  A komponens egy reszponzív elrendezést használ, amely különbözőképpen jelenik meg mobil és asztali nézetben.
-                  A Tailwind CSS osztályok segítségével a komponens stílusa és elrendezése van beállítva.
-                </p>
+          <section className="bg-white rounded-xl shadow-md overflow-hidden">
+            <div 
+              className="flex justify-between items-center p-6 cursor-pointer bg-blue-50"
+              onClick={() => toggleSection('contextApi')}
+            >
+              <h3 className="text-2xl font-bold text-gray-800">Context API és Állapotkezelés</h3>
+              <span className="text-gray-500">
+                {expandedSections.contextApi ? '▲' : '▼'}
+              </span>
               </div>
 
-              <div className="bg-white p-6 rounded-lg shadow">
-                <h4 className="text-xl font-semibold mb-4">5. Name Komponens</h4>
-                <p className="text-gray-700 mb-4">
-                  A Name komponens egy kereső komponens, amely lehetővé teszi az italok keresését név szerint.
-                  A komponens useState hook-ot használ az állapot kezeléséhez.
-                </p>
-                <pre className="bg-gray-100 p-4 rounded mb-4">
-                  {`import { useState } from "react"
-import CocktailList from "./CocktailList"
+            {expandedSections.contextApi && (
+              <div className="p-6 space-y-6">
+                <div className="prose max-w-none">
+                  <p className="text-gray-700 mb-4 leading-relaxed">
+                    A Context API lehetővé teszi az adatok globális megosztását a komponensfában, 
+                    elkerülve a prop drilling problémát. Nézzük meg a Category komponens példáját 
+                    Context API használatával.
+                  </p>
 
-const Name = () => {
-    const [cocktailName, setCocktailName] = useState("")
-    const [filteredCocktails, setFilteredCocktails] = useState([])
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">Context Létrehozása</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto whitespace-pre-wrap break-words max-w-full overflow-x-auto">
+                    {`// CocktailContext.js
+import { createContext, useState, useEffect } from 'react';
 
-    const searchCocktail = async () => {
+export const CocktailContext = createContext();
+
+export const CocktailProvider = ({ children }) => {
+    const [categories, setCategories] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        fetchCategories();
+    }, []);
+
+    const fetchCategories = async () => {
         try {
             const response = await fetch(
-                \`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=\${cocktailName}\`
+                'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list'
             );
-            const {drinks} = await response.json();
-            setFilteredCocktails(drinks || []);
-        } catch (error) {
-            console.error('Hiba a keresés során:', error);
-            setFilteredCocktails([]);
+            const data = await response.json();
+            setCategories(data.drinks || []);
+            setLoading(false);
+        } catch (err) {
+            setError(err.message);
+            setLoading(false);
         }
-    }
+    };
 
     return (
-        <div className="flex flex-col gap-5 justify-center items-center">
-            <label className="input input-bordered flex items-center gap-2 w-96">
-                <input 
-                    onChange={(e) => setCocktailName(e.target.value)} 
-                    type="text" 
-                    className="grow" 
-                    placeholder="Search" 
-                />
-                <svg
-                    onClick={searchCocktail}
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 16 16"
-                    fill="currentColor"
-                    className="h-4 w-4 opacity-70 cursor-pointer"
-                >
-                    <path
-                        fillRule="evenodd"
-                        d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-                        clipRule="evenodd" 
-                    />
-                </svg>
-            </label>
+        <CocktailContext.Provider value={{
+            categories,
+            loading,
+            error
+        }}>
+            {children}
+        </CocktailContext.Provider>
+    );
+};`}
+                  </pre>
 
-            <CocktailList list={filteredCocktails}/>
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">Context Használata</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto whitespace-pre-wrap break-words max-w-full overflow-x-auto">
+                    {`import { useContext } from "react"
+import { CocktailContext } from "../context/CocktailContext";
+
+const Category = () => {
+    const { categories, loading, error } = useContext(CocktailContext);
+    const [selectedCategory, setSelectedCategory] = useState("Cocktail");
+
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
+
+    return (
+        <div className="flex flex-col gap-5 items-center">
+            <select 
+                onChange={(e) => setSelectedCategory(e.target.value)} 
+                className="select select-bordered w-full max-w-xs"
+            >
+                {categories.map(category => (
+                    <option key={category.strCategory} value={category.strCategory}>
+                        {category.strCategory}
+                    </option>
+                ))}
+            </select>
+            <CardList category={selectedCategory} />
         </div>
-    )
-}
-
-export default Name`}
+    );
+};`}
                 </pre>
+
+                  <div className="bg-green-50 border-l-4 border-green-400 p-4 mb-6">
+                    <div className="flex items-start">
+                      <FaLightbulb className="text-green-500 mr-2 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-gray-800">Context Használati Tipp</h4>
                 <p className="text-gray-700">
-                  A komponens egy kereső mezőt és egy kereső gombot tartalmaz.
-                  A keresés gombra kattintva lekérdezi az API-t, és megjeleníti a találatokat.
-                  A komponens tartalmaz hibakezelést és null-check-et a válasz feldolgozásánál.
+                          A Context API-t használd globális állapotkezelésre, de ne vidd túlzásba. 
+                          Lokális állapotokhoz továbbra is a useState hook a megfelelő választás.
                 </p>
               </div>
             </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <h5 className="font-semibold text-blue-600 mb-2">Context Előnyei</h5>
+                      <ul className="text-sm space-y-1">
+                        <li>Prop drilling elkerülése</li>
+                        <li>Globális állapotkezelés</li>
+                        <li>Komponensek újrafelhasználhatósága</li>
+                        <li>Könnyű integrálás más hook-okkal</li>
+                      </ul>
+                    </div>
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <h5 className="font-semibold text-blue-600 mb-2">Mikor Használjuk?</h5>
+                      <ul className="text-sm space-y-1">
+                        <li>Témakezelés (dark/light mode)</li>
+                        <li>Felhasználói beállítások</li>
+                        <li>Authentikáció</li>
+                        <li>Nyelvi beállítások</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </section>
 
           <section>
@@ -335,7 +522,7 @@ export default Name`}
                 <p className="text-gray-700 mb-4">
                   Új projekt létrehozása és alapvető függőségek telepítése:
                 </p>
-                <pre className="bg-gray-100 p-4 rounded mb-4">
+                <pre className="bg-gray-100 p-4 rounded mb-4 whitespace-pre-wrap break-words max-w-full overflow-x-auto">
                   {`# Új Vite projekt létrehozása React-tel
 npm create vite@latest my-project -- --template react
 
@@ -371,7 +558,7 @@ npm run build`}
                 <p className="text-gray-700 mb-4">
                   PHP és MySQL alapú backend fejlesztéshez szükséges csomagok:
                 </p>
-                <pre className="bg-gray-100 p-4 rounded mb-4">
+                <pre className="bg-gray-100 p-4 rounded mb-4 whitespace-pre-wrap break-words max-w-full overflow-x-auto">
                   {`# Composer (PHP csomagkezelő) telepítése
 # Windows: https://getcomposer.org/Composer-Setup.exe
 
@@ -397,7 +584,7 @@ composer require monolog/monolog     # Logolás
                 <p className="text-gray-700 mb-4">
                   Node.js és Prisma alapú backend fejlesztéshez szükséges csomagok:
                 </p>
-                <pre className="bg-gray-100 p-4 rounded mb-4">
+                <pre className="bg-gray-100 p-4 rounded mb-4 whitespace-pre-wrap break-words max-w-full overflow-x-auto">
                   {`# Új Node.js projekt inicializálása
 npm init -y
 
@@ -437,7 +624,7 @@ npm run build`}
 
               <div className="bg-white p-6 rounded-lg shadow">
                 <h4 className="text-xl font-semibold mb-4">4. Gyakran Használt NPM Parancsok</h4>
-                <pre className="bg-gray-100 p-4 rounded mb-4">
+                <pre className="bg-gray-100 p-4 rounded mb-4 whitespace-pre-wrap break-words max-w-full overflow-x-auto">
                   {`# Csomagok telepítése
 npm install csomagnév
 npm install csomagnév --save-dev  # fejlesztői függőségként
@@ -483,7 +670,7 @@ npm install                    # függőségek újratelepítése`}
                 <p className="text-gray-700 mb-4">
                   A Tailwind CSS egy utility-first CSS keretrendszer, amely lehetővé teszi a gyors és egységes stílusozást.
                 </p>
-                <pre className="bg-gray-100 p-4 rounded mb-4">
+                <pre className="bg-gray-100 p-4 rounded mb-4 whitespace-pre-wrap break-words max-w-full overflow-x-auto">
                   {`// Gyakran használt Tailwind osztályok
 
 // Layout
@@ -565,7 +752,7 @@ className="flex flex-wrap justify-center gap-4 p-4
                 <p className="text-gray-700 mb-4">
                   A reszponzív design lehetővé teszi, hogy a weboldal megfelelően jelenjen meg minden képernyőméreten.
                 </p>
-                <pre className="bg-gray-100 p-4 rounded mb-4">
+                <pre className="bg-gray-100 p-4 rounded mb-4 whitespace-pre-wrap break-words max-w-full overflow-x-auto">
                   {`// Reszponzív breakpointok
 sm: 640px    // Small devices
 md: 768px    // Medium devices
@@ -622,7 +809,7 @@ xl: 1280px   // Extra large devices
                   A következő példa bemutatja, hogyan lehet összetett SQL lekérdezéseket írni több tábla összekapcsolásával.
                   A példában egy rendelés adatait kérjük le, amely tartalmazza a termék és kategória információkat is.
                 </p>
-                <pre className="bg-gray-100 p-4 rounded mb-4">
+                <pre className="bg-gray-100 p-4 rounded mb-4 whitespace-pre-wrap break-words max-w-full overflow-x-auto">
                   {`// Egy adott rendelés lekérdezése
 app.get("/rendeles/:rendeles_azonosito", (req,res) =>{
     const rendeles_azonosito = req.params.razon
@@ -656,7 +843,7 @@ app.get("/rendeles/:rendeles_azonosito", (req,res) =>{
                   A PATCH művelet lehetővé teszi egy erőforrás részleges frissítését. A következő példa bemutatja,
                   hogyan lehet dinamikusan összeállítani egy UPDATE lekérdezést a megadott mezők alapján.
                 </p>
-                <pre className="bg-gray-100 p-4 rounded mb-4">
+                <pre className="bg-gray-100 p-4 rounded mb-4 whitespace-pre-wrap break-words max-w-full overflow-x-auto">
                   {`
 });
 app.patch("/rendeles/:rendeles_azonosito", (req,res) =>{
@@ -707,61 +894,107 @@ app.post("/kategoriak", (req,res) =>{
 
       {activeTab === 'feladatok' && (
         <div className="space-y-8">
-          <section>
-            <h3 className="text-2xl font-bold mb-4">Backend Feladatok</h3>
+          <section className="bg-white p-8 rounded-xl shadow-md">
+            <h3 className="text-2xl font-bold mb-6 text-gray-800">Gyakorlati feladatok</h3>
             
-            <div className="space-y-6">
-              <div className="bg-white p-6 rounded-lg shadow">
-                <h4 className="text-xl font-semibold mb-4">1. Egyszerű Feladatkezelő</h4>
-                <p className="text-gray-700 mb-4">
-                  Készíts egy egyszerű feladatkezelő alkalmazást, amely lehetővé teszi a feladatok létrehozását, 
-                  szerkesztését, lekérdezését és törlését.
-                </p>
+            <div className="space-y-8">
+              <div className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+                <div className="flex items-start mb-4">
+                  <div className="bg-blue-100 p-2 rounded-full mr-4">
+                    <span className="text-blue-600 font-bold">1</span>
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-semibold text-gray-800">Koktél Kereső Alkalmazás</h4>
+                    <p className="text-gray-600 mt-1">
+                      Készíts egy teljes funkcionalitású koktél kereső alkalmazást a következő funkciókkal:
+                    </p>
+                  </div>
+                </div>
                 
-                <h5 className="font-semibold mb-2">API végpontok:</h5>
-                <ul className="list-disc pl-6 mb-4">
-                  <li>POST /tasks: Új feladat létrehozása (cím, leírás, határidő)</li>
-                  <li>GET /tasks: Összes feladat lekérdezése</li>
-                  <li>PUT /tasks/:id: Feladat szerkesztése (azonosító alapján)</li>
-                  <li>DELETE /tasks/:id: Feladat törlése (azonosító alapján)</li>
+                <ul className="list-disc pl-8 mb-4 text-gray-700 space-y-2">
+                  <li>Keresés név és kategória szerint</li>
+                  <li>Részletes koktél nézet</li>
+                  <li>Kedvencek mentése localStorage-ba</li>
+                  <li>Kategória szűrés</li>
+                  <li>Reszponzív design</li>
                 </ul>
 
-                <h5 className="font-semibold mb-2">Adatbázis (MySQL):</h5>
-                <pre className="bg-gray-100 p-4 rounded">
-                  {`CREATE TABLE tasks (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  title VARCHAR(255) NOT NULL,
-  description TEXT,
-  due_date DATE,
-  completed BOOLEAN DEFAULT FALSE
-);`}
-                </pre>
+                <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                  <h5 className="font-semibold text-blue-700 mb-2 flex items-center">
+                    <FaQuestionCircle className="mr-2" /> Segítség
+                  </h5>
+                  <p className="text-blue-700 text-sm">
+                    Használd a TheCocktailDB API-t az adatok lekéréséhez. Implementálj 
+                    error handling-et és loading állapotokat. A kedvencek kezeléséhez 
+                    készíts egyedi hook-ot.
+                  </p>
+                </div>
               </div>
 
-              <div className="bg-white p-6 rounded-lg shadow">
-                <h4 className="text-xl font-semibold mb-4">2. Egyszerű Blog</h4>
-                <p className="text-gray-700 mb-4">
-                  Készíts egy egyszerű blog alkalmazást, amely lehetővé teszi a bejegyzések létrehozását, 
-                  lekérdezését és törlését.
-                </p>
+              <div className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+                <div className="flex items-start mb-4">
+                  <div className="bg-blue-100 p-2 rounded-full mr-4">
+                    <span className="text-blue-600 font-bold">2</span>
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-semibold text-gray-800">Jegyzetelő Asztali Alkalmazás</h4>
+                    <p className="text-gray-600 mt-1">
+                      Készíts egy Electron alapú jegyzetelő alkalmazást a következő funkciókkal:
+                    </p>
+                  </div>
+                </div>
                 
-                <h5 className="font-semibold mb-2">API végpontok:</h5>
-                <ul className="list-disc pl-6 mb-4">
-                  <li>POST /posts: Új bejegyzés létrehozása (cím, tartalom)</li>
-                  <li>GET /posts: Összes bejegyzés lekérdezése</li>
-                  <li>GET /posts/:id: Bejegyzés lekérdezése (azonosító alapján)</li>
-                  <li>DELETE /posts/:id: Bejegyzés törlése (azonosító alapján)</li>
+                <ul className="list-disc pl-8 mb-4 text-gray-700 space-y-2">
+                  <li>Markdown szerkesztő és előnézet</li>
+                  <li>Fájl mentés és betöltés</li>
+                  <li>Automatikus mentés</li>
+                  <li>Kategóriák és címkék kezelése</li>
+                  <li>Sötét/világos téma</li>
                 </ul>
 
-                <h5 className="font-semibold mb-2">Adatbázis (MySQL):</h5>
-                <pre className="bg-gray-100 p-4 rounded">
-                  {`CREATE TABLE posts (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  title VARCHAR(255) NOT NULL,
-  content TEXT,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);`}
-                </pre>
+                <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-100">
+                  <h5 className="font-semibold text-yellow-700 mb-2 flex items-center">
+                    <FaLightbulb className="mr-2" /> Tipp
+                  </h5>
+                  <p className="text-yellow-700 text-sm">
+                    Használj React-Markdown-ot a markdown rendereléshez, és implementálj 
+                    IPC kommunikációt a fájlrendszer műveletekhez. A témakezeléshez 
+                    használj Context API-t.
+                  </p>
+                </div>
+              </div>
+
+              <div className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+                <div className="flex items-start mb-4">
+                  <div className="bg-blue-100 p-2 rounded-full mr-4">
+                    <span className="text-blue-600 font-bold">3</span>
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-semibold text-gray-800">Chat Alkalmazás</h4>
+                    <p className="text-gray-600 mt-1">
+                      Készíts egy valós idejű chat alkalmazást Socket.IO használatával:
+                    </p>
+                  </div>
+                </div>
+                
+                <ul className="list-disc pl-8 mb-4 text-gray-700 space-y-2">
+                  <li>Valós idejű üzenetküldés</li>
+                  <li>Szobák kezelése</li>
+                  <li>Felhasználói státuszok</li>
+                  <li>Üzenet előzmények</li>
+                  <li>Fájl küldés</li>
+                </ul>
+                
+                <div className="bg-green-50 p-4 rounded-lg border border-green-100">
+                  <h5 className="font-semibold text-green-700 mb-2 flex items-center">
+                    <FaLightbulb className="mr-2" /> Tipp
+                  </h5>
+                  <p className="text-green-700 text-sm">
+                    Használj custom hook-okat a Socket.IO kapcsolat kezeléséhez. 
+                    Implementálj error boundary-t a hibakezeléshez és optimistic UI 
+                    frissítéseket.
+                  </p>
+                </div>
               </div>
             </div>
           </section>
@@ -778,7 +1011,7 @@ app.post("/kategoriak", (req,res) =>{
                 <h4 className="text-xl font-semibold mb-4">1. Feladatkezelő Megoldás</h4>
                 
                 <h5 className="font-semibold mb-2">API végpontok:</h5>
-                <pre className="bg-gray-100 p-4 rounded mb-4">
+                <pre className="bg-gray-100 p-4 rounded mb-4 whitespace-pre-wrap break-words max-w-full overflow-x-auto">
                   {`// Új feladat létrehozása
 app.post("/tasks", (req, res) => {
   const { cim, leiras, hatarido } = req.body;
@@ -871,7 +1104,7 @@ VITE_API_BASE=http://localhost:8000/
                 <h4 className="text-xl font-semibold mb-4">2. Blog Megoldás</h4>
 
                 <h5 className="font-semibold mb-2">API végpontok:</h5>
-                <pre className="bg-gray-100 p-4 rounded mb-4">
+                <pre className="bg-gray-100 p-4 rounded mb-4 whitespace-pre-wrap break-words max-w-full overflow-x-auto">
                   {`// 1. Új bejegyzés létrehozása
 app.post('/posts', (req, res) => {
     const { title, content } = req.body;
@@ -929,7 +1162,7 @@ app.delete('/posts/:id', (req, res) => {
                 </pre>
 
                 <h5 className="font-semibold mb-2">Alkalmazás indítása:</h5>
-                <pre className="bg-gray-100 p-4 rounded">
+                <pre className="bg-gray-100 p-4 rounded whitespace-pre-wrap break-words max-w-full overflow-x-auto">
                   {`// index.js
 const express = require('express');
 const cors = require('cors');
@@ -963,6 +1196,236 @@ app.listen(port, () => {
         </div>
       )}
 
+      {activeTab === 'gyakorlas' && (
+        <div className="space-y-8">
+          {/* Meglévő gyakorlatok... */}
+          
+          <div className="border border-gray-200 rounded-lg p-6">
+            <h4 className="text-xl font-semibold mb-4 flex items-center">
+              <FaCode className="text-blue-600 mr-2" /> Gyakorlati Projekt #13
+            </h4>
+            
+            <div className="space-y-6">
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <h5 className="font-semibold text-gray-800 mb-2">1. Környezeti Változók Beállítása</h5>
+                <p className="text-gray-600 mb-4">
+                  Hozz létre egy .env fájlt a következő tartalommal:
+                </p>
+                <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto whitespace-pre-wrap break-words max-w-full overflow-x-auto">
+                  {`// frontend/src/.env
+VITE_API_BASE=http://localhost:8000/`}
+                </pre>
+              </div>
+
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <h5 className="font-semibold text-gray-800 mb-2">2. Hero Komponens #27</h5>
+                <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto whitespace-pre-wrap break-words max-w-full overflow-x-auto">
+                  {`import React from "react";
+import kep from "./assets/felveteli.png";
+
+const FelveteliHero = () => {
+  return (
+    <div className="flex flex-col md:flex-row items-center justify-center gap-40 px-4 py-40">
+      <div className="text-center md:text-left md:max-w-md space-y-2">
+        <h1 className="text-3xl md:text-4xl font-semibold">
+          Felvételi <span className="text-green-600">2025</span>
+        </h1>
+        <p className="text-gray-600 text-sm md:text-base">
+          Tanulói felvételi adatok a{" "}
+          <span className="text-green-700">2025–26</span> tanévre
+        </p>
+      </div>
+      <div>
+        <img src={kep} alt="Felvételi illusztráció" className="w-56 md:w-72" />
+      </div>
+    </div>
+  );
+};
+
+export default FelveteliHero;`}
+                </pre>
+              </div>
+
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <h5 className="font-semibold text-gray-800 mb-2">3. Routing és Navigáció #42</h5>
+                <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto whitespace-pre-wrap break-words max-w-full overflow-x-auto">
+                  {`import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import Books from "../assets/valami.jpg";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Menu />
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/tanulok" element={<Tanulok />} />
+        <Route path="/tanuloform" element={<TanuloForm />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+const Navbar = () => {
+  return (
+    <div className="navbar bg-green-600 text-white shadow-sm">
+      <div className="flex-1 flex items-center gap-2 ml-2">
+        <img src={Books} alt="Logo" className="h-8" />
+      </div>
+      <div className="flex-none">
+        <ul className="menu menu-horizontal px-1">
+          <li><Link to="/tanulok">Tanulók</Link></li>
+          <li><span>Jelentkezések</span></li>
+          <li><Link to="/tanuloform">Új tanuló</Link></li>
+        </ul>
+      </div>
+    </div>
+  );
+};`}
+                </pre>
+              </div>
+
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <h5 className="font-semibold text-gray-800 mb-2">4. Lista és Kártya Komponensek #56</h5>
+                <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto whitespace-pre-wrap break-words max-w-full overflow-x-auto">
+                  {`// Tanulok.jsx
+import { useEffect, useState } from "react";
+import TanuloCard from "./TanuloCard";
+
+const Tanulok = () => {
+  const [tanulok, setTanulok] = useState([]);
+  const [refresh, setRefresh] = useState(false);
+  const baseUrl = import.meta.env.VITE_API_BASE;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(\`\${baseUrl}/tanulok\`);
+      const data = await response.json();
+      setTanulok(data);
+    };
+
+    fetchData();
+  }, [refresh]);
+
+  return (
+    <div className="p-10 flex justify-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl">
+        {tanulok.length > 0 ? (
+          tanulok.map((student) => (
+            <TanuloCard key={student.oktazon} student={student} setRefresh={setRefresh} />
+          ))
+        ) : (
+          <p>Nincs adat</p>
+        )}
+      </div>
+    </div>
+  );
+};
+
+// TanuloCard.jsx
+const TanuloCard = ({ student, setRefresh }) => {
+  const baseUrl = import.meta.env.VITE_API_BASE;
+
+  const deleteStudent = async (oktazon) => {
+    const response = await fetch(\`\${baseUrl}/tanulo/id/\${oktazon}\`, {
+      method: "DELETE"
+    });
+
+    const data = await response.json();
+    alert(data.message);
+    setRefresh(prev => !prev);
+  };
+
+  return (
+    <div className="bg-green-300 w-80 rounded-xl shadow-md p-5 pt-10 relative">
+      <div className="absolute -top-5 right-5 w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center shadow-md overflow-hidden">
+        <img src={Studying} alt="Studying" className="w-8 h-8" />
+      </div>
+      <h2 className="text-lg font-bold mb-3">{student.nev}</h2>
+      <p>Oktatási azonosító: <span className="font-semibold">{student.oktazon}</span></p>
+      <p>Hozott pont: <span className="font-semibold">{student.hozott}</span></p>
+      <p>Központi felvételi magyar: <span className="font-semibold">{student.kpmagy}</span></p>
+      <p>Központi felvételi matek: <span className="font-semibold">{student.kpmat}</span></p>
+      <div className="mt-4 flex justify-end">
+        <button
+          className="bg-green-700 hover:bg-green-800 text-white py-1 px-4 rounded-md text-sm"
+          onClick={() => deleteStudent(student.oktazon)}
+        >
+          Törlés
+        </button>
+      </div>
+    </div>
+  );
+};`}
+                </pre>
+              </div>
+
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <h5 className="font-semibold text-gray-800 mb-2">5. Űrlap Komponens #71</h5>
+                <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto whitespace-pre-wrap break-words max-w-full overflow-x-auto">
+                  {`import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+const TanuloForm = () => {
+  const [formData, setFormData] = useState({
+    oktazon: "",
+    nev: "",
+    hozott: "",
+    kpmagy: "",
+    kpmat: ""
+  });
+
+  const navigate = useNavigate();
+  const baseUrl = import.meta.env.VITE_API_BASE;
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const response = await fetch(\`\${baseUrl}/tanulo\`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    });
+
+    const data = await response.json();
+    alert(data.message);
+    navigate("/");
+  };
+
+  return (
+    <div className="max-w-sm mx-auto mt-8 bg-white p-6 rounded-lg shadow">
+      <h2 className="text-xl font-bold text-center text-white bg-green-600 py-2 rounded mb-4">
+        ÚJ TANULÓ FELVITELE
+      </h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <input type="text" name="oktazon" placeholder="Oktatási azonosító" className="input input-bordered w-full" onChange={handleChange} required />
+        <input type="text" name="nev" placeholder="Név" className="input input-bordered w-full" onChange={handleChange} required />
+        <input type="number" name="hozott" placeholder="Hozott pontszám" className="input input-bordered w-full" onChange={handleChange} required />
+        <input type="number" name="kpmagy" placeholder="Központi magyarból" className="input input-bordered w-full" onChange={handleChange} required />
+        <input type="number" name="kpmat" placeholder="Központi matekból" className="input input-bordered w-full" onChange={handleChange} required />
+        <button type="submit" className="btn btn-success w-full">Küldés</button>
+      </form>
+    </div>
+  );
+};`}
+                </pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {activeTab === 'asztali' && (
         <div className="space-y-8">
           <section>
@@ -974,7 +1437,7 @@ app.listen(port, () => {
                   A WPF egy modern UI keretrendszer a Windows asztali alkalmazások fejlesztéséhez. 
                   XAML alapú felhasználói felületeket lehet vele létrehozni, és erősen integrált a .NET platformmal.
                 </p>
-                <pre className="bg-gray-100 p-4 rounded mb-4">
+                <pre className="bg-gray-100 p-4 rounded mb-4 whitespace-pre-wrap break-words max-w-full overflow-x-auto">
                   {`// Dron.cs - Adatmodell
     public class Dronok
     {
@@ -1030,7 +1493,7 @@ app.listen(port, () => {
 
               <div className="bg-white p-6 rounded-lg shadow">
                 <h4 className="text-xl font-semibold mb-4">2. Adatkezelés és eseménykezelés</h4>
-                <pre className="bg-gray-100 p-4 rounded mb-4">
+                <pre className="bg-gray-100 p-4 rounded mb-4 whitespace-pre-wrap break-words max-w-full overflow-x-auto">
                   {`// MainWindow.xaml.cs - Adatkezelés és eseménykezelés
     public partial class MainWindow : Window
     {
@@ -1096,7 +1559,7 @@ app.listen(port, () => {
                   szolgáló rendszeren keresztül. Az absztrakt osztályok és az öröklődés használatával 
                   különböző típusú hadihajókat modellezünk.
                 </p>
-                <pre className="bg-gray-100 p-4 rounded mb-4">
+                <pre className="bg-gray-100 p-4 rounded mb-4 whitespace-pre-wrap break-words max-w-full overflow-x-auto">
                   {`// Hajo.cs - Absztrakt alaposztály
 public abstract class Hajo
 {
@@ -1288,9 +1751,8 @@ class Program
                 <p className="text-gray-700 mb-4">
                   A következő példa bemutatja, hogyan lehet adatokat betölteni és kezelni egy WPF alkalmazásban.
                 </p>
-                <pre className="bg-gray-100 p-4 rounded mb-4">
-                  {`
-// MainWindow.xaml.cs
+                <pre className="bg-gray-100 p-4 rounded mb-4 whitespace-pre-wrap break-words max-w-full overflow-x-auto">
+                  {`// MainWindow.xaml.cs
     public partial class MainWindow : Window
     {
         List<Dronok> dronok = new List<Dronok>();
@@ -1348,7 +1810,7 @@ class Program
                 <p className="text-gray-700 mb-4">
                   A következő példa bemutatja, hogyan lehet adatokat betölteni és kezelni egy konzol alkalmazásban.
                 </p>
-                <pre className="bg-gray-100 p-4 rounded mb-4">
+                <pre className="bg-gray-100 p-4 rounded mb-4 whitespace-pre-wrap break-words max-w-full overflow-x-auto">
                   {`using System;
 using System.Collections.Generic;
 using System.IO;
@@ -1495,6 +1957,360 @@ class Program
                 </pre>
               </div>
             </div>
+          </section>
+
+          <section className="bg-white rounded-xl shadow-md overflow-hidden">
+            <div 
+              className="flex justify-between items-center p-6 cursor-pointer bg-blue-50"
+              onClick={() => toggleSection('asztaliAlkalmazasok')}
+            >
+              <h3 className="text-2xl font-bold text-gray-800">Asztali Alkalmazások Electron-nal</h3>
+              <span className="text-gray-500">
+                {expandedSections.asztaliAlkalmazasok ? '▲' : '▼'}
+              </span>
+            </div>
+            
+            {expandedSections.asztaliAlkalmazasok && (
+              <div className="p-6 space-y-6">
+                <div className="prose max-w-none">
+                  <p className="text-gray-700 mb-4 leading-relaxed">
+                    Az Electron lehetővé teszi webes technológiák használatát asztali alkalmazások 
+                    fejlesztéséhez. A React és Electron kombinációja különösen hatékony megoldást nyújt.
+                  </p>
+
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">Electron Alapok</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto whitespace-pre-wrap break-words max-w-full overflow-x-auto">
+                    {`// main.js - Electron főfolyamat
+const { app, BrowserWindow } = require('electron');
+const path = require('path');
+
+function createWindow() {
+    const win = new BrowserWindow({
+        width: 800,
+        height: 600,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false
+        }
+    });
+
+    // React alkalmazás betöltése
+    win.loadURL(
+        process.env.NODE_ENV === 'development'
+            ? 'http://localhost:3000'
+            : \`file://$\{path.join(__dirname, '../build/index.html')}\`
+    );
+
+    // DevTools megnyitása fejlesztési módban
+    if (process.env.NODE_ENV === 'development') {
+        win.webContents.openDevTools();
+    }
+}
+
+app.whenReady().then(createWindow);
+
+app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+        app.quit();
+    }
+});
+
+app.on('activate', () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+        createWindow();
+    }
+});`}
+                  </pre>
+
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">IPC Kommunikáció</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto whitespace-pre-wrap break-words max-w-full overflow-x-auto">
+                    {`// preload.js - IPC kommunikáció beállítása
+const { contextBridge, ipcRenderer } = require('electron');
+
+contextBridge.exposeInMainWorld('electron', {
+    sendMessage: (message) => ipcRenderer.send('message', message),
+    onResponse: (callback) => ipcRenderer.on('response', callback)
+});
+
+// React komponens
+function App() {
+    useEffect(() => {
+        // Üzenet küldése a főfolyamatnak
+        window.electron.sendMessage('Hello from React!');
+
+        // Válasz fogadása
+        window.electron.onResponse((event, response) => {
+            console.log('Response from main:', response);
+        });
+    }, []);
+
+    return (
+        <div>
+            <h1>Electron + React App</h1>
+        </div>
+    );
+}`}
+                  </pre>
+
+                  <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+                    <div className="flex items-start">
+                      <FaLightbulb className="text-yellow-500 mr-2 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-gray-800">Electron Biztonsági Tipp</h4>
+                        <p className="text-gray-700">
+                          Mindig használj contextIsolation-t és preload szkripteket a biztonságos 
+                          IPC kommunikációhoz. Ne engedélyezd a nodeIntegration-t közvetlenül.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">Natív Funkciók Használata</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto whitespace-pre-wrap break-words max-w-full overflow-x-auto">
+                    {`// Fájlrendszer műveletek
+const fs = require('fs');
+const { dialog } = require('electron');
+
+ipcMain.handle('save-file', async (event, content) => {
+    try {
+        const { filePath } = await dialog.showSaveDialog({
+            defaultPath: 'document.txt'
+        });
+
+        if (filePath) {
+            await fs.promises.writeFile(filePath, content);
+            return { success: true };
+        }
+    } catch (error) {
+        console.error('File save error:', error);
+        return { success: false, error: error.message };
+    }
+});
+
+// React komponensben
+const saveFile = async () => {
+    try {
+        const result = await window.electron.invoke('save-file', 'Hello World');
+        if (result.success) {
+            console.log('File saved successfully');
+        }
+    } catch (error) {
+        console.error('Save failed:', error);
+    }
+};`}
+                  </pre>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <h5 className="font-semibold text-blue-600 mb-2">Electron Folyamatok</h5>
+                      <ul className="text-sm space-y-1">
+                        <li>Main Process</li>
+                        <li>Renderer Process</li>
+                        <li>IPC Communication</li>
+                        <li>Preload Scripts</li>
+                      </ul>
+                    </div>
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <h5 className="font-semibold text-blue-600 mb-2">Natív Funkciók</h5>
+                      <ul className="text-sm space-y-1">
+                        <li>Fájlrendszer műveletek</li>
+                        <li>Rendszer értesítések</li>
+                        <li>Menük és tálcaikonok</li>
+                        <li>Automatikus frissítés</li>
+                      </ul>
+                    </div>
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <h5 className="font-semibold text-blue-600 mb-2">Biztonság</h5>
+                      <ul className="text-sm space-y-1">
+                        <li>Context Isolation</li>
+                        <li>Content Security Policy</li>
+                        <li>Sandbox beállítások</li>
+                        <li>ASAR csomagolás</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+        </div>
+      )}
+          </section>
+
+          <section className="bg-white rounded-xl shadow-md overflow-hidden">
+            <div 
+              className="flex justify-between items-center p-6 cursor-pointer bg-blue-50"
+              onClick={() => toggleSection('teszteles')}
+            >
+              <h3 className="text-2xl font-bold text-gray-800">Tesztelés és Minőségbiztosítás</h3>
+              <span className="text-gray-500">
+                {expandedSections.teszteles ? '▲' : '▼'}
+              </span>
+            </div>
+            
+            {expandedSections.teszteles && (
+              <div className="p-6 space-y-6">
+                <div className="prose max-w-none">
+                  <p className="text-gray-700 mb-4 leading-relaxed">
+                    A megfelelő tesztelés elengedhetetlen a minőségi szoftverek fejlesztéséhez. 
+                    Ismerjük meg a React alkalmazások tesztelésének különböző módszereit.
+                  </p>
+
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">Komponens Tesztelés</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto whitespace-pre-wrap break-words max-w-full overflow-x-auto">
+                    {`// Card.test.js
+import { render, screen } from '@testing-library/react';
+import Card from './Card';
+
+describe('Card Component', () => {
+    const mockDrink = {
+        strDrink: 'Mojito',
+        strDrinkThumb: 'mojito.jpg'
+    };
+
+    test('renders drink name and image', () => {
+        render(<Card drink={mockDrink} />);
+        
+        expect(screen.getByText('Mojito')).toBeInTheDocument();
+        expect(screen.getByRole('img')).toHaveAttribute('src', 'mojito.jpg');
+    });
+
+    test('applies correct styles', () => {
+        render(<Card drink={mockDrink} />);
+        
+        const card = screen.getByRole('article');
+        expect(card).toHaveClass('card', 'bg-base-100');
+    });
+});`}
+                  </pre>
+
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">Hook Tesztelés</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto whitespace-pre-wrap break-words max-w-full overflow-x-auto">
+                    {`// useLocalStorage.test.js
+import { renderHook, act } from '@testing-library/react-hooks';
+import useLocalStorage from './useLocalStorage';
+
+describe('useLocalStorage Hook', () => {
+    beforeEach(() => {
+        window.localStorage.clear();
+    });
+
+    test('should initialize with default value', () => {
+        const { result } = renderHook(() => 
+            useLocalStorage('testKey', 'default')
+        );
+        
+        expect(result.current[0]).toBe('default');
+    });
+
+    test('should update value', () => {
+        const { result } = renderHook(() => 
+            useLocalStorage('testKey', 'default')
+        );
+        
+        act(() => {
+            result.current[1]('new value');
+        });
+        
+        expect(result.current[0]).toBe('new value');
+        expect(localStorage.getItem('testKey')).toBe('"new value"');
+    });
+});`}
+                  </pre>
+
+                  <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
+                    <div className="flex items-start">
+                      <FaLightbulb className="text-blue-500 mr-2 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-gray-800">Tesztelési Best Practices</h4>
+                        <p className="text-gray-700">
+                          1. Használj izolált teszteket
+                          2. Mock-old a külső függőségeket
+                          3. Teszteld a felhasználói interakciókat
+                          4. Használj snapshot teszteket óvatosan
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">Integrációs Tesztek</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto whitespace-pre-wrap break-words max-w-full overflow-x-auto">
+                    {`// Category.test.js
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { CocktailProvider } from '../context/CocktailContext';
+import Category from './Category';
+
+describe('Category Integration', () => {
+    const mockCategories = [
+        { strCategory: 'Cocktail' },
+        { strCategory: 'Shot' }
+    ];
+
+    beforeEach(() => {
+        global.fetch = jest.fn(() =>
+            Promise.resolve({
+                json: () => Promise.resolve({ drinks: mockCategories })
+            })
+        );
+    });
+
+    test('loads and displays categories', async () => {
+        render(
+            <CocktailProvider>
+                <Category />
+            </CocktailProvider>
+        );
+
+        await waitFor(() => {
+            expect(screen.getByText('Cocktail')).toBeInTheDocument();
+            expect(screen.getByText('Shot')).toBeInTheDocument();
+        });
+    });
+
+    test('handles category selection', async () => {
+        render(
+            <CocktailProvider>
+                <Category />
+            </CocktailProvider>
+        );
+
+        const select = await screen.findByRole('combobox');
+        fireEvent.change(select, { target: { value: 'Shot' } });
+
+        expect(select.value).toBe('Shot');
+    });
+});`}
+                  </pre>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <h5 className="font-semibold text-blue-600 mb-2">Teszt Típusok</h5>
+                      <ul className="text-sm space-y-1">
+                        <li>Unit tesztek</li>
+                        <li>Integrációs tesztek</li>
+                        <li>E2E tesztek</li>
+                        <li>Snapshot tesztek</li>
+                      </ul>
+                    </div>
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <h5 className="font-semibold text-blue-600 mb-2">Tesztelési Eszközök</h5>
+                      <ul className="text-sm space-y-1">
+                        <li>Jest</li>
+                        <li>React Testing Library</li>
+                        <li>Cypress</li>
+                        <li>Mock Service Worker</li>
+                      </ul>
+                    </div>
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <h5 className="font-semibold text-blue-600 mb-2">Tesztelési Stratégiák</h5>
+                      <ul className="text-sm space-y-1">
+                        <li>TDD (Test Driven Development)</li>
+                        <li>BDD (Behavior Driven Development)</li>
+                        <li>Continuous Testing</li>
+                        <li>Code Coverage</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </section>
         </div>
       )}

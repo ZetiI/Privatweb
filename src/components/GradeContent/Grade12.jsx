@@ -1,50 +1,176 @@
 import React, { useState } from 'react';
+import { FaCode, FaDatabase, FaServer, FaCheckCircle, FaLightbulb, FaQuestionCircle, FaPlay } from 'react-icons/fa';
 
 const Grade12 = () => {
   const [activeTab, setActiveTab] = useState('tananyag');
+  const [expandedSections, setExpandedSections] = useState({
+    jsIntegracio: true,
+    ajaxFetch: false,
+    sqlAlapok: false,
+    sqlOsszetett: false,
+    apiIntegracio: false,
+    security: false,
+    testing: false,
+    deployment: false
+  });
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    message: ''
+  });
+
+  const toggleSection = (section) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    alert(`Form submitted with data:\nUsername: ${formData.username}\nEmail: ${formData.email}\nMessage: ${formData.message}`);
+    setFormData({ username: '', email: '', message: '' });
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
 
   return (
+    <div className="max-w-6xl mx-auto px-4 py-8">
+      <section className="bg-gradient-to-r from-blue-50 to-green-50 p-8 rounded-xl shadow-lg mb-8 border border-gray-200">
+        <div className="flex items-center mb-6">
+          <div className="bg-blue-100 p-3 rounded-full mr-4">
+            <FaDatabase className="text-blue-600 text-2xl" />
+          </div>
     <div>
-      <div className="flex space-x-4 mb-6 border-b border-gray-200">
+            <h1 className="text-4xl font-bold text-gray-800">Webfejlesztés és Adatbázisok</h1>
+            <p className="text-green-600 font-medium">12. osztályos informatika</p>
+          </div>
+        </div>
+        
+        <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+          Üdvözöljük a webfejlesztés és adatbázis-kezelés haladó kurzusán! Ebben a tananyagban 
+          megtanuljuk, hogyan lehet összekapcsolni a JavaScript kódot az adatbázisokkal, hogyan 
+          kezeljünk komplex adatstruktúrákat, és hogyan építsünk teljes webalkalmazásokat.
+        </p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+          <div className="bg-white p-6 rounded-lg shadow-md border-t-4 border-blue-500 hover:shadow-lg transition-shadow">
+            <div className="flex items-center mb-3">
+              <FaCode className="text-blue-500 mr-2" />
+              <h3 className="text-xl font-semibold">Tananyag</h3>
+            </div>
+            <p className="text-gray-600">
+              JavaScript és SQL integráció, AJAX kérések, adatbázis műveletek és gyakorlati példák.
+            </p>
+          </div>
+          
+          <div className="bg-white p-6 rounded-lg shadow-md border-t-4 border-green-500 hover:shadow-lg transition-shadow">
+            <div className="flex items-center mb-3">
+              <FaCheckCircle className="text-green-500 mr-2" />
+              <h3 className="text-xl font-semibold">Feladatok</h3>
+            </div>
+            <p className="text-gray-600">
+              Komplex projektfeladatok és gyakorlati példák a tanultak alkalmazására.
+            </p>
+          </div>
+          
+          <div className="bg-white p-6 rounded-lg shadow-md border-t-4 border-purple-500 hover:shadow-lg transition-shadow">
+            <div className="flex items-center mb-3">
+              <FaServer className="text-purple-500 mr-2" />
+              <h3 className="text-xl font-semibold">Backend Fejlesztés</h3>
+            </div>
+            <p className="text-gray-600">
+              Szerver oldali programozás, API-k készítése és adatbázis kapcsolatok.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="flex flex-wrap gap-2 mb-8 border-b border-gray-200 pb-2">
         <button
           onClick={() => setActiveTab('tananyag')}
-          className={`pb-2 px-4 ${
+          className={`px-6 py-2 rounded-lg font-medium transition-all ${
             activeTab === 'tananyag'
-              ? 'border-b-2 border-secondary text-secondary font-semibold'
-              : 'text-gray-600 hover:text-primary'
+              ? 'bg-blue-600 text-white shadow-md'
+              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
           }`}
         >
           Tananyag
         </button>
         <button
           onClick={() => setActiveTab('feladatok')}
-          className={`pb-2 px-4 ${
+          className={`px-6 py-2 rounded-lg font-medium transition-all ${
             activeTab === 'feladatok'
-              ? 'border-b-2 border-secondary text-secondary font-semibold'
-              : 'text-gray-600 hover:text-primary'
+              ? 'bg-blue-600 text-white shadow-md'
+              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
           }`}
         >
           Feladatok
         </button>
         <button
           onClick={() => setActiveTab('megoldasok')}
-          className={`pb-2 px-4 ${
+          className={`px-6 py-2 rounded-lg font-medium transition-all ${
             activeTab === 'megoldasok'
-              ? 'border-b-2 border-secondary text-secondary font-semibold'
-              : 'text-gray-600 hover:text-primary'
+              ? 'bg-blue-600 text-white shadow-md'
+              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
           }`}
         >
           Megoldások
+        </button>
+        <button
+          onClick={() => setActiveTab('gyakorlas')}
+          className={`px-6 py-2 rounded-lg font-medium transition-all ${
+            activeTab === 'gyakorlas'
+              ? 'bg-blue-600 text-white shadow-md'
+              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+          }`}
+        >
+          Gyakorlás
         </button>
       </div>
 
       {activeTab === 'tananyag' && (
         <div className="space-y-8">
-          <section>
-            <h3 className="text-2xl font-bold mb-4">JavaScript és HTML Integráció</h3>
-            <div className="space-y-4">
-              <p>DOM manipuláció és eseménykezelés:</p>
-              <pre className="bg-gray-100 p-4 rounded">
+          <section className="bg-white rounded-xl shadow-md overflow-hidden">
+            <div 
+              className="flex justify-between items-center p-6 cursor-pointer bg-blue-50"
+              onClick={() => toggleSection('jsIntegracio')}
+            >
+              <h3 className="text-2xl font-bold text-gray-800">JavaScript és HTML Integráció</h3>
+              <span className="text-gray-500">
+                {expandedSections.jsIntegracio ? '▲' : '▼'}
+              </span>
+            </div>
+            
+            {expandedSections.jsIntegracio && (
+              <div className="p-6 space-y-6">
+                <div className="prose max-w-none">
+                  <p className="text-gray-700 mb-4 leading-relaxed">
+                    A modern webalkalmazások fejlesztésénél kulcsfontosságú a JavaScript és HTML elemek 
+                    hatékony integrációja. Nézzük meg a legfontosabb technikákat és best practice-eket.
+                  </p>
+                  
+                  <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+                    <div className="flex items-start">
+                      <FaLightbulb className="text-yellow-500 mr-2 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-gray-800">Fontos tudnivaló</h4>
+                        <p className="text-gray-700">
+                          Mindig használj eseménydelegálást nagy listák vagy dinamikusan generált elemek esetén 
+                          a jobb teljesítmény érdekében.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">DOM manipuláció példák</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
                 {`// DOM elemek kiválasztása
 const element = document.getElementById('myElement');
 const elements = document.getElementsByClassName('myClass');
@@ -61,44 +187,144 @@ element.innerHTML = 'Új tartalom';
 element.classList.add('newClass');
 element.style.color = 'red';`}
               </pre>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <h5 className="font-semibold text-blue-600 mb-2">Elemek kezelése</h5>
+                      <ul className="text-sm space-y-1">
+                        <li>createElement()</li>
+                        <li>appendChild()</li>
+                        <li>removeChild()</li>
+                        <li>replaceChild()</li>
+                      </ul>
             </div>
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <h5 className="font-semibold text-blue-600 mb-2">Attribútumok</h5>
+                      <ul className="text-sm space-y-1">
+                        <li>getAttribute()</li>
+                        <li>setAttribute()</li>
+                        <li>hasAttribute()</li>
+                        <li>removeAttribute()</li>
+                      </ul>
+                    </div>
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <h5 className="font-semibold text-blue-600 mb-2">Stílusok</h5>
+                      <ul className="text-sm space-y-1">
+                        <li>style tulajdonság</li>
+                        <li>classList metódusok</li>
+                        <li>computedStyle</li>
+                        <li>CSS változók</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </section>
 
-          <section>
-            <h3 className="text-2xl font-bold mb-4">AJAX és Fetch API</h3>
-            <div className="space-y-4">
-              <p>Adatok lekérése és küldése:</p>
-              <pre className="bg-gray-100 p-4 rounded">
-                {`// Fetch API használata
-fetch('https://api.example.com/data')
-    .then(response => response.json())
-    .then(data => {
+          <section className="bg-white rounded-xl shadow-md overflow-hidden">
+            <div 
+              className="flex justify-between items-center p-6 cursor-pointer bg-blue-50"
+              onClick={() => toggleSection('ajaxFetch')}
+            >
+              <h3 className="text-2xl font-bold text-gray-800">AJAX és Fetch API</h3>
+              <span className="text-gray-500">
+                {expandedSections.ajaxFetch ? '▲' : '▼'}
+              </span>
+            </div>
+            
+            {expandedSections.ajaxFetch && (
+              <div className="p-6 space-y-6">
+                <div className="prose max-w-none">
+                  <p className="text-gray-700 mb-4 leading-relaxed">
+                    Az AJAX (Asynchronous JavaScript and XML) és a modern Fetch API lehetővé teszi 
+                    az aszinkron adatkommunikációt a szerverrel, így a weboldalunk frissítése nélkül 
+                    tudunk adatokat küldeni és fogadni.
+                  </p>
+                  
+                  <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
+                    <div className="flex items-start">
+                      <FaLightbulb className="text-blue-500 mr-2 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-gray-800">Modern megközelítés</h4>
+                        <p className="text-gray-700">
+                          A modern webfejlesztésben a Fetch API és az async/await szintaxis használata 
+                          ajánlott az XMLHttpRequest helyett.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">Fetch API példák</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
+                    {`// Adatok lekérése
+async function getData() {
+    try {
+        const response = await fetch('https://api.example.com/data');
+        const data = await response.json();
         console.log(data);
-        // Adatok megjelenítése a DOM-ban
-        document.getElementById('result').innerHTML = data.message;
-    })
-    .catch(error => console.error('Hiba:', error));
+    } catch (error) {
+        console.error('Hiba:', error);
+    }
+}
 
-// POST kérés küldése
-fetch('https://api.example.com/submit', {
+// Adatok küldése
+async function postData(data) {
+    try {
+        const response = await fetch('https://api.example.com/data', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-        name: 'John',
-        email: 'john@example.com'
-    })
-});`}
+            body: JSON.stringify(data)
+        });
+        const result = await response.json();
+        console.log('Sikeres küldés:', result);
+    } catch (error) {
+        console.error('Hiba:', error);
+    }
+}`}
               </pre>
             </div>
+              </div>
+            )}
           </section>
 
-          <section>
-            <h3 className="text-2xl font-bold mb-4">SQL Alapok</h3>
-            <div className="space-y-4">
-              <p>Adatbázis műveletek:</p>
-              <pre className="bg-gray-100 p-4 rounded">
+          <section className="bg-white rounded-xl shadow-md overflow-hidden">
+            <div 
+              className="flex justify-between items-center p-6 cursor-pointer bg-blue-50"
+              onClick={() => toggleSection('sqlAlapok')}
+            >
+              <h3 className="text-2xl font-bold text-gray-800">SQL Alapok</h3>
+              <span className="text-gray-500">
+                {expandedSections.sqlAlapok ? '▲' : '▼'}
+              </span>
+            </div>
+            
+            {expandedSections.sqlAlapok && (
+              <div className="p-6 space-y-6">
+                <div className="prose max-w-none">
+                  <p className="text-gray-700 mb-4 leading-relaxed">
+                    Az SQL (Structured Query Language) az adatbázis-kezelés alapvető nyelve. 
+                    Segítségével tudunk adatokat tárolni, lekérdezni és módosítani relációs 
+                    adatbázisokban.
+                  </p>
+                  
+                  <div className="bg-green-50 border-l-4 border-green-400 p-4 mb-6">
+                    <div className="flex items-start">
+                      <FaLightbulb className="text-green-500 mr-2 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-gray-800">Tipp</h4>
+                        <p className="text-gray-700">
+                          Mindig használj előkészített lekérdezéseket (prepared statements) a 
+                          SQL injection támadások elkerülése érdekében.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">Alapvető SQL parancsok</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
                 {`-- Tábla létrehozása
 CREATE TABLE users (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -122,728 +348,998 @@ WHERE username = 'john_doe';
 -- Adatok törlése
 DELETE FROM users WHERE id = 1;`}
               </pre>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <h5 className="font-semibold text-blue-600 mb-2">DDL parancsok</h5>
+                      <ul className="text-sm space-y-1">
+                        <li>CREATE</li>
+                        <li>ALTER</li>
+                        <li>DROP</li>
+                        <li>TRUNCATE</li>
+                      </ul>
             </div>
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <h5 className="font-semibold text-blue-600 mb-2">DML parancsok</h5>
+                      <ul className="text-sm space-y-1">
+                        <li>SELECT</li>
+                        <li>INSERT</li>
+                        <li>UPDATE</li>
+                        <li>DELETE</li>
+                      </ul>
+                    </div>
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <h5 className="font-semibold text-blue-600 mb-2">Megszorítások</h5>
+                      <ul className="text-sm space-y-1">
+                        <li>PRIMARY KEY</li>
+                        <li>FOREIGN KEY</li>
+                        <li>UNIQUE</li>
+                        <li>NOT NULL</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </section>
 
-          <section>
-            <h3 className="text-2xl font-bold mb-4">SQL Összetett Lekérdezések</h3>
-            <div className="space-y-4">
-              <p>JOIN és aggregációs függvények:</p>
-              <pre className="bg-gray-100 p-4 rounded">
+          <section className="bg-white rounded-xl shadow-md overflow-hidden">
+            <div 
+              className="flex justify-between items-center p-6 cursor-pointer bg-blue-50"
+              onClick={() => toggleSection('sqlOsszetett')}
+            >
+              <h3 className="text-2xl font-bold text-gray-800">Haladó SQL Műveletek</h3>
+              <span className="text-gray-500">
+                {expandedSections.sqlOsszetett ? '▲' : '▼'}
+              </span>
+            </div>
+            
+            {expandedSections.sqlOsszetett && (
+              <div className="p-6 space-y-6">
+                <div className="prose max-w-none">
+                  <p className="text-gray-700 mb-4 leading-relaxed">
+                    A haladó SQL műveletek lehetővé teszik komplex lekérdezések és adatmanipulációk 
+                    végrehajtását. Ezek a technikák elengedhetetlenek nagyobb adatbázisok kezeléséhez.
+                  </p>
+
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">JOIN műveletek</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
                 {`-- INNER JOIN példa
-SELECT users.username, orders.order_date
-FROM users
-INNER JOIN orders ON users.id = orders.user_id;
+SELECT orders.order_id, customers.name, orders.order_date
+FROM orders
+INNER JOIN customers ON orders.customer_id = customers.id;
 
 -- LEFT JOIN példa
-SELECT users.username, COUNT(orders.id) as order_count
-FROM users
-LEFT JOIN orders ON users.id = orders.user_id
-GROUP BY users.id;
+SELECT customers.name, COUNT(orders.order_id) as order_count
+FROM customers
+LEFT JOIN orders ON customers.id = orders.customer_id
+GROUP BY customers.id;
 
--- HAVING használata
-SELECT category, AVG(price) as avg_price
+-- MULTIPLE JOIN példa
+SELECT 
+    orders.order_id,
+    customers.name,
+    products.product_name,
+    order_items.quantity
+FROM orders
+JOIN customers ON orders.customer_id = customers.id
+JOIN order_items ON orders.order_id = order_items.order_id
+JOIN products ON order_items.product_id = products.id;`}
+                  </pre>
+
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">Aggregáló függvények</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
+                    {`-- Alapvető aggregációk
+SELECT 
+    COUNT(*) as total_orders,
+    SUM(total_amount) as total_revenue,
+    AVG(total_amount) as avg_order_value,
+    MIN(order_date) as first_order,
+    MAX(order_date) as last_order
+FROM orders;
+
+-- GROUP BY és HAVING használata
+SELECT 
+    category_id,
+    COUNT(*) as product_count,
+    AVG(price) as avg_price
 FROM products
-GROUP BY category
-HAVING avg_price > 100;`}
+GROUP BY category_id
+HAVING avg_price > 100;
+
+-- Window függvények
+SELECT 
+    product_name,
+    price,
+    category_id,
+    AVG(price) OVER (PARTITION BY category_id) as category_avg_price,
+    price - AVG(price) OVER (PARTITION BY category_id) as diff_from_avg
+FROM products;`}
               </pre>
+
+                  <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+                    <div className="flex items-start">
+                      <FaLightbulb className="text-yellow-500 mr-2 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-gray-800">Teljesítmény tipp</h4>
+                        <p className="text-gray-700">
+                          Nagy adathalmazoknál mindig használj indexeket a JOIN műveletekhez és WHERE 
+                          feltételekhez. Az EXPLAIN paranccsal ellenőrizheted a lekérdezések végrehajtási tervét.
+                        </p>
             </div>
+                    </div>
+                  </div>
+
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">Tranzakciók és zárolás</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
+                    {`-- Tranzakció kezelés
+START TRANSACTION;
+
+UPDATE accounts SET balance = balance - 100 WHERE id = 1;
+UPDATE accounts SET balance = balance + 100 WHERE id = 2;
+
+-- Ellenőrzés
+IF (SELECT balance FROM accounts WHERE id = 1) >= 0 THEN
+    COMMIT;
+ELSE
+    ROLLBACK;
+END IF;
+
+-- Zárolás példa
+SELECT * FROM accounts WHERE id = 1 FOR UPDATE;
+-- Most más tranzakciók várni fognak, amíg ez a tranzakció befejeződik
+
+-- Izolációs szintek beállítása
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+-- vagy
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;`}
+                  </pre>
+                </div>
+              </div>
+            )}
           </section>
 
-          <section>
-            <h3 className="text-2xl font-bold mb-4">JavaScript és SQL Integráció</h3>
-            <div className="space-y-4">
-              <p>Adatbázis műveletek JavaScript-ből:</p>
-              <pre className="bg-gray-100 p-4 rounded">
-                {`// Adatok lekérése az adatbázisból
-async function getUsers() {
-    try {
-        const response = await fetch('/api/users');
-        const users = await response.json();
-        displayUsers(users);
-    } catch (error) {
-        console.error('Hiba:', error);
+          <section className="bg-white rounded-xl shadow-md overflow-hidden">
+            <div 
+              className="flex justify-between items-center p-6 cursor-pointer bg-blue-50"
+              onClick={() => toggleSection('apiIntegracio')}
+            >
+              <h3 className="text-2xl font-bold text-gray-800">API Integráció</h3>
+              <span className="text-gray-500">
+                {expandedSections.apiIntegracio ? '▲' : '▼'}
+              </span>
+            </div>
+            
+            {expandedSections.apiIntegracio && (
+              <div className="p-6 space-y-6">
+                <div className="prose max-w-none">
+                  <p className="text-gray-700 mb-4 leading-relaxed">
+                    A modern webalkalmazások fejlesztésénél kulcsfontosságú a különböző API-k 
+                    integrációja. Nézzük meg a leggyakoribb módszereket és best practice-eket.
+                  </p>
+
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">REST API Integráció</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
+                    {`// API kliens osztály
+class ApiClient {
+    constructor(baseUrl) {
+        this.baseUrl = baseUrl;
+        this.token = localStorage.getItem('token');
     }
-}
 
-// Adatok megjelenítése
-function displayUsers(users) {
-    const userList = document.getElementById('userList');
-    userList.innerHTML = users.map(user => \`
-        <div class="user-card">
-            <h3>\${user.username}</h3>
-            <p>\${user.email}</p>
-        </div>
-    \`).join('');
-}
+    async request(endpoint, options = {}) {
+        const url = \`\${this.baseUrl}\${endpoint}\`;
+        const headers = {
+            'Content-Type': 'application/json',
+            ...(this.token && { 'Authorization': \`Bearer \${this.token}\` }),
+            ...options.headers
+        };
 
-// Új felhasználó hozzáadása
-async function addUser(userData) {
-    try {
-        const response = await fetch('/api/users', {
+        try {
+            const response = await fetch(url, {
+                ...options,
+                headers
+            });
+
+            if (!response.ok) {
+                throw new Error(\`HTTP error! status: \${response.status}\`);
+            }
+
+            const data = await response.json();
+            return data;
+    } catch (error) {
+            console.error('API request failed:', error);
+            throw error;
+        }
+    }
+
+    // CRUD műveletek
+    async get(endpoint) {
+        return this.request(endpoint);
+    }
+
+    async post(endpoint, data) {
+        return this.request(endpoint, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(userData)
+            body: JSON.stringify(data)
         });
-        const result = await response.json();
-        console.log('Sikeres hozzáadás:', result);
-    } catch (error) {
-        console.error('Hiba:', error);
     }
+
+    async put(endpoint, data) {
+        return this.request(endpoint, {
+            method: 'PUT',
+            body: JSON.stringify(data)
+        });
+    }
+
+    async delete(endpoint) {
+        return this.request(endpoint, {
+            method: 'DELETE'
+        });
+    }
+}
+
+// Használat példa
+const api = new ApiClient('https://api.example.com');
+
+// Adatok lekérése
+try {
+    const users = await api.get('/users');
+    console.log('Users:', users);
+
+    // Új felhasználó létrehozása
+    const newUser = await api.post('/users', {
+        name: 'John Doe',
+        email: 'john@example.com'
+    });
+
+    // Felhasználó módosítása
+    await api.put(\`/users/\${newUser.id}\`, {
+        name: 'John Updated'
+    });
+
+    // Felhasználó törlése
+    await api.delete(\`/users/\${newUser.id}\`);
+} catch (error) {
+    console.error('API művelet sikertelen:', error);
 }`}
               </pre>
+
+                  <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
+                    <div className="flex items-start">
+                      <FaLightbulb className="text-blue-500 mr-2 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-gray-800">API Biztonság</h4>
+                        <p className="text-gray-700">
+                          Mindig használj HTTPS-t API kommunikációhoz, és implementálj megfelelő 
+                          hibakezelést és retry mechanizmusokat a megbízhatatlan hálózati kapcsolatok kezelésére.
+                        </p>
             </div>
-          </section>
+        </div>
+                  </div>
+
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">GraphQL Integráció</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
+                    {`// GraphQL kliens Apollo Client használatával
+import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
+
+const client = new ApolloClient({
+    uri: 'https://api.example.com/graphql',
+    cache: new InMemoryCache()
+});
+
+// Query példa
+const GET_USERS = gql\`
+    query GetUsers {
+        users {
+            id
+            name
+            email
+            posts {
+                id
+                title
+            }
+        }
+    }
+\`;
+
+// Mutation példa
+const CREATE_USER = gql\`
+    mutation CreateUser($name: String!, $email: String!) {
+        createUser(name: $name, email: $email) {
+            id
+            name
+            email
+        }
+    }
+\`;
+
+// Használat
+async function fetchUsers() {
+    try {
+        const { data } = await client.query({
+            query: GET_USERS
+        });
+        console.log('Users:', data.users);
+    } catch (error) {
+        console.error('GraphQL query failed:', error);
+    }
+}
+
+async function createUser(name, email) {
+    try {
+        const { data } = await client.mutate({
+            mutation: CREATE_USER,
+            variables: { name, email }
+        });
+        console.log('Created user:', data.createUser);
+    } catch (error) {
+        console.error('GraphQL mutation failed:', error);
+    }
+}`}
+                  </pre>
+                </div>
         </div>
       )}
-
-      {activeTab === 'feladatok' && (
-        <div className="space-y-8">
-          <section>
-            <h3 className="text-2xl font-bold mb-4">1. Feladat: Felhasználói Rendszer</h3>
-            <p>Készíts egy felhasználói rendszert, amely tartalmazza:</p>
-            <ul className="list-disc pl-6 space-y-2">
-              <li>Regisztrációs és bejelentkezési űrlapot</li>
-              <li>Felhasználói adatok validációját JavaScript-tel</li>
-              <li>Adatok küldését AJAX-szal</li>
-              <li>Felhasználói profil megjelenítését</li>
-              <li>Profil szerkesztési lehetőséget</li>
-            </ul>
           </section>
 
-          <section>
-            <h3 className="text-2xl font-bold mb-4">2. Feladat: Termék Katalógus</h3>
-            <p>Készíts egy termék katalógust, amely tartalmazza:</p>
-            <ul className="list-disc pl-6 space-y-2">
-              <li>Termékek listázását kategóriák szerint</li>
-              <li>Keresési és szűrési lehetőségeket</li>
-              <li>Termék részletek megjelenítését</li>
-              <li>Kosár funkcionalitást</li>
-              <li>Rendelés leadási űrlapot</li>
-            </ul>
-          </section>
-
-          <section>
-            <h3 className="text-2xl font-bold mb-4">3. Feladat: Blog Rendszer</h3>
-            <p>Készíts egy blog rendszert, amely tartalmazza:</p>
-            <ul className="list-disc pl-6 space-y-2">
-              <li>Blog bejegyzések listázását</li>
-              <li>Új bejegyzés létrehozását</li>
-              <li>Komment rendszert</li>
-              <li>Kategóriákat és címkéket</li>
-              <li>Keresési és szűrési lehetőségeket</li>
-            </ul>
-          </section>
-
-          <section>
-            <h3 className="text-2xl font-bold mb-4">4. Feladat: Adatbázis Kezelő</h3>
-            <p>Készíts egy adatbázis kezelő felületet, amely tartalmazza:</p>
-            <ul className="list-disc pl-6 space-y-2">
-              <li>Táblák létrehozását és módosítását</li>
-              <li>Adatok beszúrását és frissítését</li>
-              <li>Komplex lekérdezések írását</li>
-              <li>Adatok exportálását és importálását</li>
-              <li>Adatbázis biztonsági beállításokat</li>
-            </ul>
-          </section>
-
-          <section>
-            <h3 className="text-2xl font-bold mb-4">5. Feladat: E-learning Platform</h3>
-            <p>Készíts egy e-learning platformot, amely tartalmazza:</p>
-            <ul className="list-disc pl-6 space-y-2">
-              <li>Kurzusok kezelését</li>
-              <li>Felhasználói szerepköröket (tanár, diák)</li>
-              <li>Feladatok és teszt rendszert</li>
-              <li>Értékelési rendszert</li>
-              <li>Statisztikákat és jelentéseket</li>
-            </ul>
-          </section>
-        </div>
-      )}
-
-      {activeTab === 'megoldasok' && (
-        <div className="space-y-8">
-          <section>
-            <h3 className="text-2xl font-bold mb-4">1. Feladat megoldása</h3>
-            <pre className="bg-gray-100 p-4 rounded">
-              {`// HTML
-<!DOCTYPE html>
-<html lang="hu">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Felhasználói Rendszer</title>
-</head>
-<body>
-    <div id="auth-forms">
-        <form id="register-form">
-            <input type="text" id="username" required>
-            <input type="email" id="email" required>
-            <input type="password" id="password" required>
-            <button type="submit">Regisztráció</button>
-        </form>
+          <section className="bg-white rounded-xl shadow-md overflow-hidden">
+            <div 
+              className="flex justify-between items-center p-6 cursor-pointer bg-blue-50"
+              onClick={() => toggleSection('security')}
+            >
+              <h3 className="text-2xl font-bold text-gray-800">Webalkalmazás Biztonság</h3>
+              <span className="text-gray-500">
+                {expandedSections.security ? '▲' : '▼'}
+              </span>
     </div>
 
-    <div id="user-profile" style="display: none;">
-        <h2>Profil</h2>
-        <div id="profile-data"></div>
-        <button id="edit-profile">Szerkesztés</button>
-    </div>
+            {expandedSections.security && (
+              <div className="p-6 space-y-6">
+                <div className="prose max-w-none">
+                  <p className="text-gray-700 mb-4 leading-relaxed">
+                    A webalkalmazások biztonsága kritikus fontosságú. Ismerjük meg a legfontosabb 
+                    biztonsági kockázatokat és azok megelőzési módjait.
+                  </p>
 
-    <script>
-        // JavaScript
-        document.getElementById('register-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const userData = {
-                username: document.getElementById('username').value,
-                email: document.getElementById('email').value,
-                password: document.getElementById('password').value
-            };
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">XSS (Cross-Site Scripting) Védelem</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
+                    {`// Rossz példa - sebezhető kód
+element.innerHTML = userInput;  // SOHA ne csináld ezt!
 
-            try {
-                const response = await fetch('/api/register', {
+// Helyes megoldás - escape HTML
+function escapeHtml(unsafe) {
+    return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+// Használat
+element.textContent = userInput;  // Biztonságos
+// vagy
+element.innerHTML = escapeHtml(userInput);  // Biztonságos
+
+// React automatikusan escape-eli a stringeket
+const Component = () => {
+    return <div>{userInput}</div>;  // Biztonságos
+};
+
+// DOMPurify használata ha HTML-t kell engedélyezni
+import DOMPurify from 'dompurify';
+element.innerHTML = DOMPurify.sanitize(userInput);`}
+                  </pre>
+
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">CSRF (Cross-Site Request Forgery) Védelem</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
+                    {`// CSRF token generálása
+function generateCSRFToken() {
+    return crypto.randomBytes(32).toString('hex');
+}
+
+// Token ellenőrzése
+app.use((req, res, next) => {
+    // Token generálása minden munkamenethez
+    if (!req.session.csrfToken) {
+        req.session.csrfToken = generateCSRFToken();
+    }
+    
+    // Token ellenőrzése POST kéréseknél
+    if (req.method === 'POST') {
+        const token = req.headers['x-csrf-token'];
+        if (!token || token !== req.session.csrfToken) {
+            return res.status(403).json({ error: 'Invalid CSRF token' });
+        }
+    }
+    
+    next();
+});
+
+// Frontend implementáció
+async function submitForm(data) {
+    try {
+        const response = await fetch('/api/submit', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': csrfToken  // Token küldése
                     },
-                    body: JSON.stringify(userData)
+            body: JSON.stringify(data)
                 });
-                const result = await response.json();
-                if (result.success) {
-                    showProfile(result.user);
-                }
+        // ...
             } catch (error) {
-                console.error('Hiba:', error);
-            }
-        });
-
-        function showProfile(user) {
-            document.getElementById('auth-forms').style.display = 'none';
-            document.getElementById('user-profile').style.display = 'block';
-            document.getElementById('profile-data').innerHTML = \`
-                <p>Felhasználónév: \${user.username}</p>
-                <p>Email: \${user.email}</p>
-            \`;
-        }
-    </script>
-</body>
-</html>
-
--- SQL
-CREATE TABLE users (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);`}
+        console.error('Form submission failed:', error);
+    }
+}`}
             </pre>
-          </section>
 
-          <section>
-            <h3 className="text-2xl font-bold mb-4">2. Feladat megoldása</h3>
-            <pre className="bg-gray-100 p-4 rounded">
-              {`// HTML
-<!DOCTYPE html>
-<html lang="hu">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Termék Katalógus</title>
-</head>
-<body>
-    <div class="container">
-        <div class="filters">
-            <input type="text" id="search" placeholder="Keresés...">
-            <select id="category">
-                <option value="">Minden kategória</option>
-            </select>
+                  <div className="bg-red-50 border-l-4 border-red-400 p-4 mb-6">
+                    <div className="flex items-start">
+                      <FaLightbulb className="text-red-500 mr-2 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-gray-800">Biztonsági figyelmeztetés</h4>
+                        <p className="text-gray-700">
+                          Soha ne tárolj érzékeny adatokat (jelszavak, tokenek) plain textként. 
+                          Mindig használj erős titkosítást és hash függvényeket.
+                        </p>
         </div>
-
-        <div id="products" class="product-grid"></div>
-
-        <div id="cart" class="cart">
-            <h3>Kosár</h3>
-            <div id="cart-items"></div>
-            <div id="cart-total"></div>
         </div>
     </div>
 
-    <script>
-        // JavaScript
-        let products = [];
-        let cart = [];
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">SQL Injection Védelem</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
+                    {`// Rossz példa - sebezhető kód
+const query = \`SELECT * FROM users WHERE username = '\${username}'\`;  // SOHA!
 
-        async function loadProducts() {
-            try {
-                const response = await fetch('/api/products');
-                products = await response.json();
-                displayProducts(products);
+// Helyes megoldás - prepared statements
+const query = 'SELECT * FROM users WHERE username = ?';
+connection.query(query, [username], (error, results) => {
+    if (error) throw error;
+    console.log(results);
+});
+
+// Vagy async/await használatával
+async function getUser(username) {
+    try {
+        const query = 'SELECT * FROM users WHERE username = ?';
+        const [rows] = await connection.execute(query, [username]);
+        return rows[0];
             } catch (error) {
-                console.error('Hiba:', error);
-            }
-        }
+        console.error('Database query failed:', error);
+        throw error;
+    }
+}
 
-        function displayProducts(products) {
-            const container = document.getElementById('products');
-            container.innerHTML = products.map(product => \`
-                <div class="product-card">
-                    <img src="\${product.image}" alt="\${product.name}">
-                    <h3>\${product.name}</h3>
-                    <p>\${product.price} Ft</p>
-                    <button onclick="addToCart(\${product.id})">Kosárba</button>
+// ORM használata (pl. Sequelize)
+const user = await User.findOne({
+    where: { username }  // Automatikusan biztonságos
+});`}
+                  </pre>
+
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">Jelszókezelés</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
+                    {`// Bcrypt használata jelszó hasheléshez
+const bcrypt = require('bcrypt');
+const saltRounds = 12;
+
+// Jelszó hashelése
+async function hashPassword(password) {
+    try {
+        const salt = await bcrypt.genSalt(saltRounds);
+        const hash = await bcrypt.hash(password, salt);
+        return hash;
+    } catch (error) {
+        console.error('Password hashing failed:', error);
+        throw error;
+    }
+}
+
+// Jelszó ellenőrzése
+async function verifyPassword(password, hash) {
+    try {
+        const match = await bcrypt.compare(password, hash);
+        return match;
+    } catch (error) {
+        console.error('Password verification failed:', error);
+        throw error;
+    }
+}
+
+// Használat
+async function registerUser(username, password) {
+    try {
+        const hashedPassword = await hashPassword(password);
+        // Mentés adatbázisba...
+    } catch (error) {
+        console.error('User registration failed:', error);
+        throw error;
+    }
+}
+
+async function loginUser(username, password) {
+    try {
+        const user = await getUser(username);
+        if (!user) return false;
+        
+        const isValid = await verifyPassword(password, user.password);
+        return isValid;
+    } catch (error) {
+        console.error('Login failed:', error);
+        throw error;
+    }
+}`}
+            </pre>
                 </div>
-            \`).join('');
-        }
+              </div>
+            )}
+          </section>
 
-        function addToCart(productId) {
-            const product = products.find(p => p.id === productId);
-            if (product) {
-                cart.push(product);
-                updateCart();
-            }
-        }
+          <section className="bg-white rounded-xl shadow-md overflow-hidden">
+            <div 
+              className="flex justify-between items-center p-6 cursor-pointer bg-blue-50"
+              onClick={() => toggleSection('testing')}
+            >
+              <h3 className="text-2xl font-bold text-gray-800">Tesztelés és Hibakezelés</h3>
+              <span className="text-gray-500">
+                {expandedSections.testing ? '▲' : '▼'}
+              </span>
+        </div>
 
-        function updateCart() {
-            const cartItems = document.getElementById('cart-items');
-            const cartTotal = document.getElementById('cart-total');
+            {expandedSections.testing && (
+              <div className="p-6 space-y-6">
+                <div className="prose max-w-none">
+                  <p className="text-gray-700 mb-4 leading-relaxed">
+                    A megfelelő tesztelés és hibakezelés elengedhetetlen a megbízható alkalmazások 
+                    fejlesztéséhez. Ismerjük meg a legfontosabb technikákat.
+                  </p>
+
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">Unit Tesztelés</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
+                    {`// Jest használata React komponensek teszteléséhez
+import { render, screen, fireEvent } from '@testing-library/react';
+import UserForm from './UserForm';
+
+describe('UserForm', () => {
+    test('renders form elements', () => {
+        render(<UserForm />);
+        
+        expect(screen.getByLabelText(/username/i)).toBeInTheDocument();
+        expect(screen.getByLabelText(/password/i)).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: /submit/i })).toBeInTheDocument();
+    });
+
+    test('handles form submission', async () => {
+        const mockSubmit = jest.fn();
+        render(<UserForm onSubmit={mockSubmit} />);
+        
+        fireEvent.change(screen.getByLabelText(/username/i), {
+            target: { value: 'testuser' }
+        });
+        fireEvent.change(screen.getByLabelText(/password/i), {
+            target: { value: 'password123' }
+        });
+        
+        fireEvent.click(screen.getByRole('button', { name: /submit/i }));
+        
+        expect(mockSubmit).toHaveBeenCalledWith({
+            username: 'testuser',
+            password: 'password123'
+        });
+    });
+});
+
+// Függvények tesztelése
+describe('utils', () => {
+    test('validates email correctly', () => {
+        expect(validateEmail('test@example.com')).toBe(true);
+        expect(validateEmail('invalid-email')).toBe(false);
+    });
+
+    test('formats currency correctly', () => {
+        expect(formatCurrency(1234.56)).toBe('$1,234.56');
+        expect(formatCurrency(0)).toBe('$0.00');
+    });
+});`}
+            </pre>
+
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">Integrációs Tesztelés</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
+                    {`// Supertest használata API teszteléshez
+const request = require('supertest');
+const app = require('../app');
+
+describe('API Endpoints', () => {
+    test('GET /api/users returns users', async () => {
+        const response = await request(app)
+            .get('/api/users')
+            .expect('Content-Type', /json/)
+            .expect(200);
             
-            cartItems.innerHTML = cart.map(item => \`
-                <div class="cart-item">
-                    <span>\${item.name}</span>
-                    <span>\${item.price} Ft</span>
-                </div>
-            \`).join('');
+        expect(response.body).toBeInstanceOf(Array);
+    });
 
-            const total = cart.reduce((sum, item) => sum + item.price, 0);
-            cartTotal.textContent = \`Összesen: \${total} Ft\`;
-        }
-    </script>
-</body>
-</html>
+    test('POST /api/users creates new user', async () => {
+        const userData = {
+            username: 'testuser',
+            email: 'test@example.com'
+        };
+        
+        const response = await request(app)
+            .post('/api/users')
+            .send(userData)
+            .expect('Content-Type', /json/)
+            .expect(201);
+            
+        expect(response.body).toHaveProperty('id');
+        expect(response.body.username).toBe(userData.username);
+    });
+});
 
--- SQL
-CREATE TABLE products (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(100) NOT NULL,
-    description TEXT,
-    price DECIMAL(10,2) NOT NULL,
-    category_id INT,
-    image_url VARCHAR(255),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (category_id) REFERENCES categories(id)
-);
+// Adatbázis műveletek tesztelése
+describe('Database Operations', () => {
+    beforeAll(async () => {
+        await db.connect();
+    });
 
-CREATE TABLE categories (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(50) NOT NULL,
-    description TEXT
-);
+    afterAll(async () => {
+        await db.disconnect();
+    });
 
-CREATE TABLE cart_items (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT,
-    product_id INT,
-    quantity INT DEFAULT 1,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (product_id) REFERENCES products(id)
-);`}
-            </pre>
-          </section>
+    beforeEach(async () => {
+        await db.clear();
+    });
 
-          <section>
-            <h3 className="text-2xl font-bold mb-4">3. Feladat megoldása</h3>
-            <pre className="bg-gray-100 p-4 rounded">
-              {`// HTML
-<!DOCTYPE html>
-<html lang="hu">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Rendszer</title>
-</head>
-<body>
-    <div class="container">
-        <div class="blog-header">
-            <h1>Blog</h1>
-            <button id="new-post">Új bejegyzés</button>
-        </div>
-
-        <div class="filters">
-            <input type="text" id="search" placeholder="Keresés...">
-            <select id="category">
-                <option value="">Minden kategória</option>
-            </select>
-        </div>
-
-        <div id="posts" class="posts-grid"></div>
-    </div>
-
-    <script>
-        // JavaScript
-        let posts = [];
-
-        async function loadPosts() {
-            try {
-                const response = await fetch('/api/posts');
-                posts = await response.json();
-                displayPosts(posts);
-            } catch (error) {
-                console.error('Hiba:', error);
-            }
-        }
-
-        function displayPosts(posts) {
-            const container = document.getElementById('posts');
-            container.innerHTML = posts.map(post => \`
-                <article class="post-card">
-                    <h2>\${post.title}</h2>
-                    <div class="post-meta">
-                        <span>\${post.author}</span>
-                        <span>\${new Date(post.created_at).toLocaleDateString()}</span>
-                    </div>
-                    <p>\${post.excerpt}</p>
-                    <div class="post-tags">
-                        \${post.tags.map(tag => \`<span class="tag">\${tag}</span>\`).join('')}
-                    </div>
-                    <div class="comments">
-                        <h3>Hozzászólások</h3>
-                        \${post.comments.map(comment => \`
-                            <div class="comment">
-                                <strong>\${comment.author}</strong>
-                                <p>\${comment.content}</p>
-                            </div>
-                        \`).join('')}
-                    </div>
-                </article>
-            \`).join('');
-        }
-
-        document.getElementById('new-post').addEventListener('click', () => {
-            // Új bejegyzés létrehozása
+    test('creates user in database', async () => {
+        const user = await createUser({
+            username: 'testuser',
+            email: 'test@example.com'
         });
-    </script>
-</body>
-</html>
-
--- SQL
-CREATE TABLE posts (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    title VARCHAR(200) NOT NULL,
-    content TEXT NOT NULL,
-    author_id INT,
-    category_id INT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (author_id) REFERENCES users(id),
-    FOREIGN KEY (category_id) REFERENCES categories(id)
-);
-
-CREATE TABLE comments (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    post_id INT,
-    author_id INT,
-    content TEXT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (post_id) REFERENCES posts(id),
-    FOREIGN KEY (author_id) REFERENCES users(id)
-);
-
-CREATE TABLE tags (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(50) NOT NULL UNIQUE
-);
-
-CREATE TABLE post_tags (
-    post_id INT,
-    tag_id INT,
-    PRIMARY KEY (post_id, tag_id),
-    FOREIGN KEY (post_id) REFERENCES posts(id),
-    FOREIGN KEY (tag_id) REFERENCES tags(id)
-);`}
-            </pre>
-          </section>
-
-          <section>
-            <h3 className="text-2xl font-bold mb-4">4. Feladat megoldása</h3>
-            <pre className="bg-gray-100 p-4 rounded">
-              {`// HTML
-<!DOCTYPE html>
-<html lang="hu">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adatbázis Kezelő</title>
-</head>
-<body>
-    <div class="container">
-        <div class="sidebar">
-            <h3>Táblák</h3>
-            <ul id="tables"></ul>
-            <button id="new-table">Új tábla</button>
-        </div>
-
-        <div class="main-content">
-            <div class="query-editor">
-                <textarea id="sql-query" placeholder="SQL lekérdezés..."></textarea>
-                <button id="execute-query">Végrehajtás</button>
-            </div>
-
-            <div class="results">
-                <table id="query-results"></table>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // JavaScript
-        let tables = [];
-
-        async function loadTables() {
-            try {
-                const response = await fetch('/api/tables');
-                tables = await response.json();
-                displayTables(tables);
-            } catch (error) {
-                console.error('Hiba:', error);
-            }
-        }
-
-        function displayTables(tables) {
-            const container = document.getElementById('tables');
-            container.innerHTML = tables.map(table => \`
-                <li>
-                    <span>\${table.name}</span>
-                    <button onclick="showTableStructure('\${table.name}')">Struktúra</button>
-                    <button onclick="showTableData('\${table.name}')">Adatok</button>
-                </li>
-            \`).join('');
-        }
-
-        document.getElementById('execute-query').addEventListener('click', async () => {
-            const query = document.getElementById('sql-query').value;
-            try {
-                const response = await fetch('/api/execute-query', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ query })
-                });
-                const result = await response.json();
-                displayResults(result);
-            } catch (error) {
-                console.error('Hiba:', error);
-            }
+        
+        expect(user.id).toBeDefined();
+        
+        const foundUser = await findUserById(user.id);
+        expect(foundUser).toMatchObject({
+            username: 'testuser',
+            email: 'test@example.com'
         });
+    });
+});`}
+                  </pre>
 
-        function displayResults(results) {
-            const table = document.getElementById('query-results');
-            if (results.length === 0) {
-                table.innerHTML = '<tr><td>Nincs találat</td></tr>';
-                return;
-            }
-
-            const headers = Object.keys(results[0]);
-            table.innerHTML = \`
-                <thead>
-                    <tr>\${headers.map(h => \`<th>\${h}</th>\`).join('')}</tr>
-                </thead>
-                <tbody>
-                    \${results.map(row => \`
-                        <tr>\${headers.map(h => \`<td>\${row[h]}</td>\`).join('')}</tr>
-                    \`).join('')}
-                </tbody>
-            \`;
-        }
-    </script>
-</body>
-</html>
-
--- SQL
--- Példa tábla létrehozása
-CREATE TABLE example_table (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(100) NOT NULL,
-    description TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- Példa adatok beszúrása
-INSERT INTO example_table (name, description) 
-VALUES 
-    ('Első elem', 'Ez az első elem leírása'),
-    ('Második elem', 'Ez a második elem leírása');
-
--- Példa lekérdezés
-SELECT * FROM example_table WHERE name LIKE '%elem%';`}
-            </pre>
-          </section>
-
-          <section>
-            <h3 className="text-2xl font-bold mb-4">5. Feladat megoldása</h3>
-            <pre className="bg-gray-100 p-4 rounded">
-              {`// HTML
-<!DOCTYPE html>
-<html lang="hu">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-learning Platform</title>
-</head>
-<body>
-    <div class="container">
-        <nav class="main-nav">
-            <div class="user-info">
-                <span id="user-role"></span>
-                <span id="user-name"></span>
+                  <div className="bg-green-50 border-l-4 border-green-400 p-4 mb-6">
+                    <div className="flex items-start">
+                      <FaLightbulb className="text-green-500 mr-2 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-gray-800">Tesztelési tipp</h4>
+                        <p className="text-gray-700">
+                          Használj mock objektumokat és test double-öket a külső függőségek 
+                          (pl. adatbázis, API-k) helyettesítésére a unit tesztekben.
+                        </p>
             </div>
-            <ul>
-                <li><a href="#courses">Kurzusok</a></li>
-                <li><a href="#assignments">Feladatok</a></li>
-                <li><a href="#grades">Értékelések</a></li>
-            </ul>
-        </nav>
-
-        <main>
-            <div id="courses" class="section">
-                <h2>Kurzusok</h2>
-                <div id="course-list"></div>
-            </div>
-
-            <div id="assignments" class="section">
-                <h2>Feladatok</h2>
-                <div id="assignment-list"></div>
-            </div>
-
-            <div id="grades" class="section">
-                <h2>Értékelések</h2>
-                <div id="grade-list"></div>
-            </div>
-        </main>
+        </div>
     </div>
 
-    <script>
-        // JavaScript
-        let user = null;
-        let courses = [];
-        let assignments = [];
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">Hibakezelés</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
+                    {`// Központi hibakezelő middleware
+class AppError extends Error {
+    constructor(message, statusCode) {
+        super(message);
+        this.statusCode = statusCode;
+        this.status = \`\${statusCode}\`.startsWith('4') ? 'fail' : 'error';
+        this.isOperational = true;
 
-        async function loadUserData() {
-            try {
-                const response = await fetch('/api/user');
-                user = await response.json();
-                updateUserInfo();
-                loadContent();
-            } catch (error) {
-                console.error('Hiba:', error);
-            }
+        Error.captureStackTrace(this, this.constructor);
+    }
+}
+
+// Express hibakezelő middleware
+app.use((err, req, res, next) => {
+    err.statusCode = err.statusCode || 500;
+    err.status = err.status || 'error';
+
+    if (process.env.NODE_ENV === 'development') {
+        res.status(err.statusCode).json({
+            status: err.status,
+            error: err,
+            message: err.message,
+            stack: err.stack
+        });
+    } else {
+        // Production
+        if (err.isOperational) {
+            res.status(err.statusCode).json({
+                status: err.status,
+                message: err.message
+            });
+        } else {
+            // Programming or unknown error
+            console.error('ERROR:', err);
+            res.status(500).json({
+                status: 'error',
+                message: 'Something went wrong!'
+            });
         }
+    }
+});
 
-        function updateUserInfo() {
-            document.getElementById('user-role').textContent = user.role;
-            document.getElementById('user-name').textContent = user.name;
-        }
+// Async hibakezelő wrapper
+const catchAsync = fn => {
+    return (req, res, next) => {
+        fn(req, res, next).catch(next);
+    };
+};
 
-        async function loadContent() {
-            if (user.role === 'teacher') {
-                await loadTeacherContent();
-            } else {
-                await loadStudentContent();
-            }
-        }
-
-        async function loadTeacherContent() {
-            try {
-                const [coursesRes, assignmentsRes] = await Promise.all([
-                    fetch('/api/courses'),
-                    fetch('/api/assignments')
-                ]);
-                courses = await coursesRes.json();
-                assignments = await assignmentsRes.json();
-                displayTeacherContent();
-            } catch (error) {
-                console.error('Hiba:', error);
-            }
-        }
-
-        function displayTeacherContent() {
-            // Kurzusok megjelenítése
-            const courseList = document.getElementById('course-list');
-            courseList.innerHTML = courses.map(course => \`
-                <div class="course-card">
-                    <h3>\${course.title}</h3>
-                    <p>\${course.description}</p>
-                    <div class="course-stats">
-                        <span>\${course.studentCount} diák</span>
-                        <span>\${course.assignmentCount} feladat</span>
-                    </div>
-                    <button onclick="editCourse(\${course.id})">Szerkesztés</button>
+// Használat
+app.get('/api/users', catchAsync(async (req, res) => {
+    const users = await User.find();
+    if (!users.length) {
+        throw new AppError('No users found', 404);
+    }
+    res.json(users);
+}));`}
+                  </pre>
                 </div>
-            \`).join('');
+              </div>
+            )}
+          </section>
 
-            // Feladatok megjelenítése
-            const assignmentList = document.getElementById('assignment-list');
-            assignmentList.innerHTML = assignments.map(assignment => \`
-                <div class="assignment-card">
-                    <h3>\${assignment.title}</h3>
-                    <p>\${assignment.description}</p>
-                    <div class="assignment-stats">
-                        <span>\${assignment.submittedCount} leadott</span>
-                        <span>\${assignment.gradedCount} értékelt</span>
-                    </div>
-                    <button onclick="gradeAssignment(\${assignment.id})">Értékelés</button>
-                </div>
-            \`).join('');
-        }
-    </script>
-</body>
-</html>
+          <section className="bg-white rounded-xl shadow-md overflow-hidden">
+            <div 
+              className="flex justify-between items-center p-6 cursor-pointer bg-blue-50"
+              onClick={() => toggleSection('deployment')}
+            >
+              <h3 className="text-2xl font-bold text-gray-800">Deployment és CI/CD</h3>
+              <span className="text-gray-500">
+                {expandedSections.deployment ? '▲' : '▼'}
+              </span>
+            </div>
+            
+            {expandedSections.deployment && (
+              <div className="p-6 space-y-6">
+                <div className="prose max-w-none">
+                  <p className="text-gray-700 mb-4 leading-relaxed">
+                    A modern webalkalmazások fejlesztésének fontos része a hatékony deployment 
+                    folyamat és a folyamatos integráció/folyamatos szállítás (CI/CD) gyakorlata.
+                  </p>
 
--- SQL
-CREATE TABLE courses (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    title VARCHAR(100) NOT NULL,
-    description TEXT,
-    teacher_id INT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (teacher_id) REFERENCES users(id)
-);
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">Docker Konténerizáció</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
+                    {`# Dockerfile példa
+FROM node:18-alpine
 
-CREATE TABLE course_enrollments (
-    course_id INT,
-    student_id INT,
-    enrolled_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (course_id, student_id),
-    FOREIGN KEY (course_id) REFERENCES courses(id),
-    FOREIGN KEY (student_id) REFERENCES users(id)
-);
+WORKDIR /app
 
-CREATE TABLE assignments (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    course_id INT,
-    title VARCHAR(100) NOT NULL,
-    description TEXT,
-    due_date DATETIME,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (course_id) REFERENCES courses(id)
-);
+# Függőségek másolása és telepítése
+COPY package*.json ./
+RUN npm ci --only=production
 
-CREATE TABLE submissions (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    assignment_id INT,
-    student_id INT,
-    content TEXT,
-    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    grade DECIMAL(5,2),
-    feedback TEXT,
-    FOREIGN KEY (assignment_id) REFERENCES assignments(id),
-    FOREIGN KEY (student_id) REFERENCES users(id)
-);`}
+# Alkalmazás fájlok másolása
+COPY . .
+
+# Build process
+RUN npm run build
+
+# Port beállítása
+EXPOSE 3000
+
+# Alkalmazás indítása
+CMD ["npm", "start"]
+
+# Docker Compose konfiguráció
+version: '3.8'
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgres://user:pass@db:5432/dbname
+    depends_on:
+      - db
+  
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=dbname
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:`}
             </pre>
+
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">GitHub Actions CI/CD</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
+                    {`# .github/workflows/ci.yml
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Run tests
+      run: npm test
+      
+    - name: Run linting
+      run: npm run lint
+      
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Deploy to production
+      run: |
+        echo "Deploying to production..."
+        # Add deployment steps here`}
+                  </pre>
+
+                  <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
+                    <div className="flex items-start">
+                      <FaLightbulb className="text-blue-500 mr-2 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-gray-800">Deployment tipp</h4>
+                        <p className="text-gray-700">
+                          Használj környezeti változókat a konfigurációhoz és soha ne commitolj 
+                          érzékeny adatokat a verziókezelő rendszerbe.
+                        </p>
+            </div>
+                    </div>
+    </div>
+
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">Monitoring és Naplózás</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
+                    {`// Winston logger konfiguráció
+const winston = require('winston');
+
+const logger = winston.createLogger({
+    level: 'info',
+    format: winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.json()
+    ),
+    transports: [
+        new winston.transports.File({ filename: 'error.log', level: 'error' }),
+        new winston.transports.File({ filename: 'combined.log' })
+    ]
+});
+
+if (process.env.NODE_ENV !== 'production') {
+    logger.add(new winston.transports.Console({
+        format: winston.format.simple()
+    }));
+}
+
+// Prometheus metrikák
+const prometheus = require('prom-client');
+const collectDefaultMetrics = prometheus.collectDefaultMetrics;
+
+// Metrikák gyűjtése
+collectDefaultMetrics();
+
+// Egyedi metrika
+const httpRequestDurationMicroseconds = new prometheus.Histogram({
+    name: 'http_request_duration_ms',
+    help: 'Duration of HTTP requests in ms',
+    labelNames: ['method', 'route', 'code'],
+    buckets: [0.1, 5, 15, 50, 100, 500]
+});
+
+// Express middleware a metrikák gyűjtéséhez
+app.use((req, res, next) => {
+    const start = Date.now();
+    res.on('finish', () => {
+        const duration = Date.now() - start;
+        httpRequestDurationMicroseconds
+            .labels(req.method, req.route.path, res.statusCode)
+            .observe(duration);
+    });
+    next();
+});
+
+// Metrikák endpoint
+app.get('/metrics', async (req, res) => {
+    res.set('Content-Type', prometheus.register.contentType);
+    res.end(await prometheus.register.metrics());
+});`}
+                  </pre>
+
+                  <h4 className="text-xl font-semibold mt-6 mb-4 text-gray-800">Teljesítmény Optimalizálás</h4>
+                  <pre className="bg-gray-800 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
+                    {`// Redis gyorsítótár implementálása
+const Redis = require('ioredis');
+const redis = new Redis();
+
+// Gyorsítótárazott adatlekérés
+async function getCachedData(key, fetchFunction) {
+    try {
+        // Próbáljuk meg először a cache-ből
+        const cachedData = await redis.get(key);
+        if (cachedData) {
+            return JSON.parse(cachedData);
+        }
+
+        // Ha nincs cache, lekérjük az adatot
+        const data = await fetchFunction();
+        
+        // Cache-eljük az eredményt
+        await redis.set(key, JSON.stringify(data), 'EX', 3600);
+        
+        return data;
+    } catch (error) {
+        console.error('Cache error:', error);
+        // Fallback direkt lekérésre hiba esetén
+        return fetchFunction();
+    }
+}
+
+// Webpack optimalizálás
+module.exports = {
+    mode: 'production',
+    optimization: {
+        minimize: true,
+        splitChunks: {
+            chunks: 'all',
+            minSize: 20000,
+            maxSize: 244000,
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all'
+                }
+            }
+        }
+    },
+    performance: {
+        hints: 'warning',
+        maxEntrypointSize: 512000,
+        maxAssetSize: 512000
+    }
+};`}
+                  </pre>
+
+                  <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+                    <div className="flex items-start">
+                      <FaLightbulb className="text-yellow-500 mr-2 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-gray-800">Optimalizálási tipp</h4>
+                        <p className="text-gray-700">
+                          Használj CDN-t a statikus tartalmakhoz, és implementálj lazy loading-ot 
+                          a nagy méretű komponensekhez és képekhez.
+                        </p>
+                    </div>
+                </div>
+                    </div>
+                </div>
+              </div>
+            )}
           </section>
         </div>
       )}
